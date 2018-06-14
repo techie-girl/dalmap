@@ -17,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
     }
 
+    //Set the Notification Channel Id
     String CHANNEL_ID = "dalMapNotificationChannel";
+
+    //Creates a Notification Channel
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop(){
         super.onStop();
 
+        //Starts the NotificationService
         startService(new Intent(this, NotificationService.class));
     }
 }

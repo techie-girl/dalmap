@@ -8,12 +8,13 @@ import android.support.v4.app.NotificationManagerCompat;
 
 public class NotificationService extends Service {
 
+    //Set the Notification Channel Id and Notification Id
     int notificationId = 1;
     String CHANNEL_ID = "dalMapNotificationChannel";
     NotificationCompat.Builder mBuilder;
     NotificationManagerCompat notificationManager;
 
-
+    //Bind the service
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
@@ -30,10 +31,10 @@ public class NotificationService extends Service {
         return START_STICKY;
     }
 
-
     @Override
     public void onCreate() {
 
+        //Build the notification
         mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle(getString(R.string.notification_title))
