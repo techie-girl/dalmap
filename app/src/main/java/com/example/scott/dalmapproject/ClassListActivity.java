@@ -41,7 +41,7 @@ public class ClassListActivity extends AppCompatActivity {
         //Adapter to populate the list
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_list_item_2,
+                android.R.layout.simple_list_item_1,
                 List );
 
         //Populate the list
