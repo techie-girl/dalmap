@@ -1,4 +1,4 @@
-package com.example.scott.dalmapproject;
+package com.example.scott.buildings_services_listview;
 
 import org.junit.Test;
 
