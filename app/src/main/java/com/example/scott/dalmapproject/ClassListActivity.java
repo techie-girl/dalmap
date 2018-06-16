@@ -138,9 +138,10 @@ public class ClassListActivity extends AppCompatActivity {
 
                 //Set the textViews in the popup window to be proper values
                 ((TextView) popupWindow.getContentView().findViewById(R.id.ClassCode)).setText(selectedItem);
-                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassTitle)).setText("Intro to Computer Programming");
-                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassDuration)).setText("SUMMER (1): 07-MAY-2018 - 03-AUG-2018");
-                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassLocation)).setText("Studley COMPUTER SCIENCE 134");
+                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassTitle)).setText(R.string.tempCRN);
+                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassDuration)).setText(R.string.tempTime);
+                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassInstructor)).setText(R.string.tempInstructor);
+                ((TextView) popupWindow.getContentView().findViewById(R.id.ClassLocation)).setText(R.string.tempLocation);
 
                 //Tell the popup window how to animate its creation and destruction
                 popupWindow.setAnimationStyle(R.style.Animation);

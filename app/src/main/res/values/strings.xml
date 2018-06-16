@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">DalMapProject</string>
+    <string name="cancel">Cancel</string>
+    <string name="class_code">Class Code:</string>
+    <string name="crn">CRN:</string>
+    <string name="time">Time:</string>
+    <string name="instructor">Instructor:</string>
+    <string name="location">Location:</string>
+    <string name="tempCRN"> 20615</string>
+    <string name="tempTime"> 2:35–3:25</string>
+    <string name="tempInstructor"> Trappenberg T.</string>
+    <string name="tempLocation"> COMPUTER SCIENCE 127</string>
 </resources>

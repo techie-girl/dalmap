@@ -7,7 +7,7 @@
 
     <Button
         android:id="@+id/popup_window_button"
-        android:text="@string/app_name"
+        android:text="@string/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -24,13 +24,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:text="@string/app_name" />
+                android:layout_marginTop="30dp"
+                android:text="@string/class_code" />
             <TextView
                 android:id="@+id/ClassCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/app_name" />
         </TableRow>
 
@@ -40,13 +40,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:text="@string/app_name" />
+                android:layout_marginTop="10dp"
+                android:text="@string/crn" />
             <TextView
                 android:id="@+id/ClassTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/app_name" />
         </TableRow>
@@ -57,14 +56,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:text="@string/app_name" />
+                android:layout_marginTop="10dp"
+                android:text="@string/time" />
             <TextView
                 android:id="@+id/ClassDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp" android:text="@string/app_name" />
-
+                android:layout_marginTop="10dp"
+                android:text="@string/app_name" />
         </TableRow>
 
         <TableRow
@@ -73,13 +72,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/instructor" />
+            <TextView
+                android:id="@+id/ClassInstructor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/app_name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/location" />
             <TextView
                 android:id="@+id/ClassLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/app_name" />
         </TableRow>
 
