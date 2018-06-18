@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,7 @@
 
         <activity android:name=".classLists" android:label="CLass Lists"></activity>
         <activity android:name=".detailMap" android:label="Class Information"></activity>
+        <activity android:name=".MainActivity" android:label="Log In"></activity>
 
     </application>
 

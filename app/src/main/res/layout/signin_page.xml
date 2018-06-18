@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/signTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/signin"
+        android:background="@color/brightGrey"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/fnameprompt"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/fname"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/signTitle" />
+
+    <EditText
+        android:id="@+id/fnameInput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:hint="@string/fname"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fnameprompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fnameprompt" />
+
+    <TextView
+        android:id="@+id/lnameprompt"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/lname"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fnameInput" />
+
+    <EditText
+        android:id="@+id/lnameInput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:hint="@string/lname"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/lnameInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lnameprompt" />
+
+</android.support.constraint.ConstraintLayout>
