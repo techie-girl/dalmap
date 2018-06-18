@@ -12,8 +12,8 @@ public class Main3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
 
         TextView Services = (TextView) findViewById(R.id.Services);
-
-        Services.setText("Services2:");
+        //Set service info text
+        Services.setText("Services2:   Second Cup Hours: 10-6 Mon-Sun    Location: Killam Library");
 
     }
 }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< Updated upstream:Buildings_Services_listview.iml
 <module external.linked.project.id="Buildings_Services_listview" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+=======
+<module external.linked.project.id="dalmap" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+>>>>>>> Stashed changes:dalmap.iml
   <component name="FacetManager">
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
