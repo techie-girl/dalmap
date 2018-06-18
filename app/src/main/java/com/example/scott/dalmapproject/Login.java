@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
                     idEditText.setText("");
                     pwEditText.setText("");
 
-                    Intent intent1 = new Intent(getApplicationContext(), classLists.class);
+                    Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
                     startActivity(intent1);
 
                 }

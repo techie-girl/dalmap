@@ -5,7 +5,7 @@
     <string name="ids">ID</string>
     <string name="signin">Sign In</string>
     <string name="password">Password</string>
-    <string name="signinMSG">If you do not have ID yet, please Sign in</string>
+    <string name="signinMSG">If you do not have ID yet, please </string>
     <string name="submitBT">Submit</string>
     <string name="cancelBT">Cancel</string>
 

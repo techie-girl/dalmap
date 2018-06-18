@@ -17,9 +17,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".classLists" android:label="CLass Lists"></activity>
-        <activity android:name=".detailMap" android:label="Class Information"></activity>
-        <activity android:name=".MainActivity" android:label="Log In"></activity>
+        <activity android:name=".signIn"></activity>
+        <activity android:name="main_menu"></activity>
 
     </application>
 
