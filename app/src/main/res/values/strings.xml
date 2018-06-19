@@ -5,15 +5,20 @@
     <string name="ids">ID</string>
     <string name="signin">Sign In</string>
     <string name="password">Password</string>
-    <string name="signinMSG">If you do not have ID yet, please </string>
+    <string name="signinMSG">If you do not have ID yet, please click </string>
     <string name="submitBT">Submit</string>
     <string name="cancelBT">Cancel</string>
 
     <string name="idHint">Dalhousie Student ID</string>
     <string name="lname">Last Name</string>
     <string name="fname">First Name</string>
-    <string name="sid">Dal ID</string>
     <string name="repw">Re-Password</string>
+    <string name="repwhint">Type password again</string>
     <string name="semester">Semester</string>
+
+    <string name="menu1">My Classes</string>
+    <string name="menu2">All Classes</string>
+    <string name="menu3">Buildings Lists</string>
+    <string name="menu4">Services Lists</string>
 
 </resources>

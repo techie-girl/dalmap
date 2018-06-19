@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login_page);
 
         Button bt1 = findViewById(R.id.submitBT);
+        final TextView tvSign = findViewById(R.id.sign);
         final EditText idEditText = findViewById(R.id.idInput);
         final EditText pwEditText = findViewById(R.id.pwInput);
 
@@ -36,6 +38,7 @@ public class Login extends AppCompatActivity {
                     pwEditText.setText("");
 
                     Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
+                    intent1.putExtra("id", ids);
                     startActivity(intent1);
 
                 }
@@ -46,8 +49,14 @@ public class Login extends AppCompatActivity {
                     pwEditText.setText("");
 
                 }
+            }
+        });
 
-
+        tvSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(getApplicationContext(), signIn.class);
+                startActivity(intent2);
 
             }
         });
@@ -58,7 +67,7 @@ public class Login extends AppCompatActivity {
     }
 
     public String getIds() {
-        return ids;
+        return this.ids;
     }
 
     public void setPasswords(String passwords) {
@@ -66,7 +75,7 @@ public class Login extends AppCompatActivity {
     }
 
     public String getPasswords() {
-        return passwords;
+        return this.passwords;
     }
 }
 

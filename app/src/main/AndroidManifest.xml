@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".signIn"></activity>
-        <activity android:name="main_menu"></activity>
+        <activity
+            android:name=".signIn">
+        </activity>
+        <activity android:name="main_menu"
+            android:parentActivityName=".Login">
+        </activity>
 
     </application>
 
