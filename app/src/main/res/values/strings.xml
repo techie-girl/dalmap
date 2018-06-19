@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">DalMapProject</string>
+    <string name="app_name">Dalhousie Navigation</string>
+
+    <string name="login">Log In</string>
+    <string name="ids">ID</string>
+    <string name="signin">Sign In</string>
+    <string name="password">Password</string>
+    <string name="signinMSG">If you do not have ID yet, please </string>
+    <string name="submitBT">Submit</string>
+    <string name="cancelBT">Cancel</string>
+
+    <string name="idHint">Dalhousie Student ID</string>
+    <string name="lname">Last Name</string>
+    <string name="fname">First Name</string>
+    <string name="sid">Dal ID</string>
+    <string name="repw">Re-Password</string>
+    <string name="semester">Semester</string>
+
 </resources>
