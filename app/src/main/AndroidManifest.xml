@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,12 +17,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ClassListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.ALTERNATIVE" />
-            </intent-filter>
+        <activity
+            android:name=".signIn">
+        </activity>
+        <activity android:name="main_menu"
+            android:parentActivityName=".Login">
         </activity>
 
     </application>

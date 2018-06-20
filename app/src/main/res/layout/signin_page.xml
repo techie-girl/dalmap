@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/signTitle"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/signin"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fnameprompt"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/fname"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fnameInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signTitle" />
+
+    <EditText
+        android:id="@+id/fnameInput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/fname"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fnameprompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fnameprompt" />
+
+    <TextView
+        android:id="@+id/lnameprompt"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/lname"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lnameInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fnameprompt" />
+
+    <EditText
+        android:id="@+id/lnameInput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/lname"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lnameprompt"
+        app:layout_constraintTop_toBottomOf="@id/fnameInput" />
+
+    <TextView
+        android:id="@+id/signID"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/ids"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/signIDinput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lnameprompt" />
+
+    <EditText
+        android:id="@+id/signIDinput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/idHint"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/signID"
+        app:layout_constraintTop_toBottomOf="@id/lnameInput" />
+
+    <TextView
+        android:id="@+id/signPW"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/password"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/signPWinput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signID" />
+
+    <EditText
+        android:id="@+id/signPWinput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/password"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/signPW"
+        app:layout_constraintTop_toBottomOf="@id/signIDinput" />
+
+    <TextView
+        android:id="@+id/signSPW"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/brightGrey"
+        android:gravity="center"
+        android:text="@string/repw"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/signSPWinput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signPW" />
+
+    <EditText
+        android:id="@+id/signSPWinput"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/repwhint"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/signSPW"
+        app:layout_constraintTop_toBottomOf="@id/signPWinput" />
+
+    <Button
+        android:id="@+id/signsubBT"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/submitBT"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/signcancelBT"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signSPW" />
+
+    <Button
+        android:id="@+id/signcancelBT"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/cancelBT"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/signsubBT"
+        app:layout_constraintTop_toBottomOf="@+id/signSPW"/>
+
+</android.support.constraint.ConstraintLayout>
