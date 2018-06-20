@@ -1,11 +1,6 @@
 package com.example.scott.dalmapproject;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.util.JsonReader;
-import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
 
 public class dataBaseCommunication extends Activity{
 

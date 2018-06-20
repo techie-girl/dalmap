@@ -26,9 +26,6 @@ public class signIn extends AppCompatActivity {
         final EditText pwET = findViewById(R.id.signPWinput);
         final EditText pw2ET = findViewById(R.id.signSPWinput);
 
-
-
-
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -28,15 +28,9 @@ public class main_menu extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    /*
                     Intent intent1 = new Intent(getApplicationContext(), ClassListActivity.class);
                     intent1.putExtra("id", sid);
                     startActivity(intent1);
-                    */
-
-                    //This is just for testing if this activity got id from parent or not. This will be removed later
-                    Toast.makeText(getApplicationContext(), sid,Toast.LENGTH_SHORT).show();
-
 
                 }
             });
@@ -44,11 +38,10 @@ public class main_menu extends AppCompatActivity {
             bt2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*
-                    Intent intent2 = new Intent(getApplicationContext(), CLassListActivity.class);
-                    intent1.putExtra("id", sid);
+
+                    Intent intent2 = new Intent(getApplicationContext(), ClassListActivity.class);
+                    intent2.putExtra("id", sid);
                     startActivity(intent2);
-                    */
                 }
             });
 
@@ -57,7 +50,7 @@ public class main_menu extends AppCompatActivity {
                 public void onClick(View view) {
                     /*
                     Intent intent3 = new Intent(getApplicationContext(), BuildingListActivity.class);
-                    intent1.putExtra("id", sid);
+                    intent3.putExtra("id", sid);
                     startActivity(intent3);
                     */
                 }
@@ -68,7 +61,7 @@ public class main_menu extends AppCompatActivity {
                 public void onClick(View view) {
                     /*
                     Intent intent4 = new Intent(getApplicationContext(), ServiceListActivity.class);
-                    intent1.putExtra("id", sid);
+                    intent2.putExtra("id", sid);
                     startActivity(intent4);
                     */
                 }

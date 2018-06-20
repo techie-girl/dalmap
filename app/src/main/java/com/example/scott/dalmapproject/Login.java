@@ -23,8 +23,6 @@ public class Login extends AppCompatActivity {
         final EditText idEditText = findViewById(R.id.idInput);
         final EditText pwEditText = findViewById(R.id.pwInput);
 
-
-
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
