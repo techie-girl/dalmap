@@ -4,16 +4,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-public class Main4Activity extends AppCompatActivity {
+public class GoldbergInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.activity_goldberg_info);
 
         TextView Services = (TextView) findViewById(R.id.Services);
+        TextView Building = (TextView) findViewById(R.id.building);
         //Set service info text
-        Services.setText("Services3:    Bistro Hours: 11-5 Mon-Fri    Location: Killam Library");
+        Services.setText("Services: Second Cup\nHours: 10-6 Mon-Sun\nLocation: Goldberg Computer Science Atrium");
+        Building.setText("Hours:7am-2am\n");
 
     }
 }

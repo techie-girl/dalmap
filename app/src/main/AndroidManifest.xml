@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.MainActivity">
+        <activity android:name="com.example.scott.dalmapproject.BuildingListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.Main2Activity">
+        <activity android:name="com.example.scott.dalmapproject.HenryHicksInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.Main3Activity">
+        <activity android:name="com.example.scott.dalmapproject.GoldbergInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,7 +66,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.Main4Activity">
+        <activity android:name="com.example.scott.dalmapproject.KillamInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

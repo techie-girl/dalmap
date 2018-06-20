@@ -48,7 +48,7 @@ public class main_menu extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent3 = new Intent(getApplicationContext(), BuildingListActivity.class);
                     intent3.putExtra("id", sid);
                     startActivity(intent3);
 
