@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class main_menu extends AppCompatActivity {
 
@@ -48,11 +47,11 @@ public class main_menu extends AppCompatActivity {
             bt3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*
-                    Intent intent3 = new Intent(getApplicationContext(), BuildingListActivity.class);
+
+                    Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
                     intent3.putExtra("id", sid);
                     startActivity(intent3);
-                    */
+
                 }
             });
 
