@@ -33,6 +33,7 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
+
         <activity android:name="main_menu"
             android:parentActivityName=".Login">
             <intent-filter>
@@ -42,7 +43,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.BuildingListActivity">
+        <activity android:name=".BuildingListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +51,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.HenryHicksInfoActivity">
+        <activity android:name=".HenryHicksInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +59,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.GoldbergInfoActivity">
+        <activity android:name=".GoldbergInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,7 +67,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.scott.dalmapproject.KillamInfoActivity">
+        <activity android:name=".KillamInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

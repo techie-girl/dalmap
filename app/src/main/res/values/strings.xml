@@ -31,4 +31,9 @@
     <string name="tempTime"> 2:35–3:25</string>
     <string name="tempInstructor"> Trappenberg T.</string>
     <string name="tempLocation"> COMPUTER SCIENCE 127</string>
+
+    <string name="channel_name">Channel Name</string>
+    <string name="channel_description">Channel Description</string>
+    <string name="notification_title">Title</string>
+    <string name="notification_content">content</string>
 </resources>

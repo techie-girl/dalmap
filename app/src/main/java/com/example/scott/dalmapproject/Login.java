@@ -18,6 +18,10 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
+        //Start the notification service on initial app start.
+        Intent NotificationServiceIntent = new Intent(getApplicationContext(), NotificationService.class);
+        startService(NotificationServiceIntent);
+
         Button bt1 = findViewById(R.id.submitBT);
         final TextView tvSign = findViewById(R.id.sign);
         final EditText idEditText = findViewById(R.id.idInput);
