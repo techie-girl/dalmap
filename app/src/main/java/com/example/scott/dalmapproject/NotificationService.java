@@ -56,6 +56,8 @@ public class NotificationService extends Service {
 
         return START_STICKY;
     }
+    //Gotta add a comment to make the file different so it will commit
+    //TODO remove this in a future commit
 
     //Creates a Notification Channel
     private void createNotificationChannel() {
