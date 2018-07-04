@@ -75,6 +75,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".KillamFloorPlanActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+
         <service android:name=".NotificationService"/>
 
         <receiver android:name=".NotificationPublisher"/>
