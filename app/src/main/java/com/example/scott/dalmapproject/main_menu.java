@@ -23,26 +23,26 @@ public class main_menu extends AppCompatActivity {
             Bundle ids = getIntent().getExtras();
             sid = (String)ids.get("id");
 
-            bt1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+           bt1.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
 
-                    Intent intent1 = new Intent(getApplicationContext(), ClassListActivity.class);
-                    intent1.putExtra("id", sid);
-                    startActivity(intent1);
+                   Intent intent1 = new Intent(getApplicationContext(), ClassListActivity.class);
+                   intent1.putExtra("id", sid);
+                   startActivity(intent1);
 
-                }
-            });
+               }
+           });
 
-            bt2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+           bt2.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
 
-                    Intent intent2 = new Intent(getApplicationContext(), ClassListActivity.class);
-                    intent2.putExtra("id", sid);
-                    startActivity(intent2);
-                }
-            });
+                   Intent intent2 = new Intent(getApplicationContext(), ClassListActivity.class);
+                   intent2.putExtra("id", sid);
+                   startActivity(intent2);
+               }
+           });
 
             bt3.setOnClickListener(new View.OnClickListener() {
                 @Override
