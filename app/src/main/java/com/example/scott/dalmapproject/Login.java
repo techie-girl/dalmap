@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Login extends AppCompatActivity {
 
     private String ids, passwords;
@@ -21,6 +23,13 @@ public class Login extends AppCompatActivity {
         //Start the notification service on initial app start.
         Intent NotificationServiceIntent = new Intent(getApplicationContext(), NotificationService.class);
         startService(NotificationServiceIntent);
+
+        //Initialize the firebase shared variables
+        FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplication();
+        firebaseInstanceData.firebaseDBInstance = FirebaseDatabase.getInstance();
+        firebaseInstanceData.firebaseReferenceClasses = firebaseInstanceData.firebaseDBInstance.getReference("classes");
+        firebaseInstanceData.firebaseReferenceUsers = firebaseInstanceData.firebaseDBInstance.getReference("users");
+
 
         Button bt1 = findViewById(R.id.submitBT);
         final TextView tvSign = findViewById(R.id.sign);
