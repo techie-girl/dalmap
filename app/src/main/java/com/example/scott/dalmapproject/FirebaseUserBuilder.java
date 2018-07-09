@@ -23,11 +23,11 @@ public class FirebaseUserBuilder extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 //An array list of ClassObjects to be passes to the new UserObjects
-                ArrayList<ClassObject> classes = new ArrayList();
+                ArrayList<String> classes = new ArrayList();
 
                 //Adds every class in the Class tree to the classes ArrayList
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    classes.add(ds.getValue(ClassObject.class));
+                    classes.add(String.valueOf(ds.getValue(ClassObject.class).CRN));
 
                 }
 

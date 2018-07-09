@@ -35,9 +35,9 @@ public class FirebaseClassBuilder extends AppCompatActivity{
 
 
         //Push the ClassObjects to the database
-        firebaseInstanceData.firebaseReferenceClasses.child(classObject.courseID).setValue(classObject);
-        firebaseInstanceData.firebaseReferenceClasses.child(classObject2.courseID).setValue(classObject2);
-        firebaseInstanceData.firebaseReferenceClasses.child(classObject3.courseID).setValue(classObject3);
+        firebaseInstanceData.firebaseReferenceClasses.child(String.valueOf(classObject.CRN)).setValue(classObject);
+        firebaseInstanceData.firebaseReferenceClasses.child(String.valueOf(classObject2.CRN)).setValue(classObject2);
+        firebaseInstanceData.firebaseReferenceClasses.child(String.valueOf(classObject3.CRN)).setValue(classObject3);
 
         firebaseInstanceData.firebaseReferenceClasses.push();
         finish();

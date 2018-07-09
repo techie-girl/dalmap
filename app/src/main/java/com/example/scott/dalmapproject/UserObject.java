@@ -10,14 +10,14 @@ public class UserObject {
 
     public String bannerID;
     public String name;
-    public ArrayList<ClassObject> classes;
+    public ArrayList<String> classes;
 
     public UserObject(){
         //default constructor
     }
 
     //Main constructor for building UserObjects
-    public UserObject(String bannerID, String name, ArrayList<ClassObject> classes){
+    public UserObject(String bannerID, String name, ArrayList<String> classes){
         this.bannerID = bannerID;
         this.name = name;
         this.classes = classes;
