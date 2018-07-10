@@ -53,4 +53,7 @@
     <string name="channel_description">Channel Description</string>
     <string name="notification_title">Title</string>
     <string name="notification_content">content</string>
+
+    <string name="next_floor">Next Floor</string>
+    <string name="previous_floor">Previous Floor</string>
 </resources>
