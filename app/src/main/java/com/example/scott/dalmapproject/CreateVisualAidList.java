@@ -34,9 +34,13 @@ public class CreateVisualAidList {
     //import array list
     private ArrayList<CreateVisualAidList> prepData(){
         ArrayList<CreateVisualAidList> theImage = new ArrayList<>();
-        for(int i = 0; i < imageTitleArr.length; i++){
+        for(int i = 0; i < imageTitleArr.length; i++) {
             CreateVisualAidList createList = new CreateVisualAidList();
             createList.setImageTitle(imageTitleArr[i]);
+            createList.setImageID(imageIDArr[i]);
+            theimage.add(createList);
         }
+
+        return theImage;
     }
 }
