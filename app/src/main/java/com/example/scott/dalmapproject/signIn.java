@@ -7,10 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.support.annotation.NonNull;
+import java.util.ArrayList;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class signIn extends AppCompatActivity {
 
-    private String signIds, signPWs, secondPW, fname, lname;
+    private String signIds, signPWs, secondPW, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,40 +26,60 @@ public class signIn extends AppCompatActivity {
         Button bt1 = findViewById(R.id.signsubBT);
         Button bt2 = findViewById(R.id.signcancelBT);
 
-        EditText fnameET = findViewById(R.id.nameInput);
+        final EditText nameET = findViewById(R.id.nameInput);
         final EditText sidET = findViewById(R.id.signIDinput);
         final EditText pwET = findViewById(R.id.signPWinput);
         final EditText pw2ET = findViewById(R.id.signSPWinput);
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
 
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // If there is no duplication of ID in database
-                if (true) {
+                if (pwET.getText().toString().equals(pw2ET.getText().toString())) {
 
-                    // If PW matches to Re-PW,
-                    if(true) {
 
-                        //To DO: Should call writing data into Firebase
+                    final ArrayList<String> classes = new ArrayList();
 
-                        setSignIds(sidET.getText().toString());
+                    ValueEventListener getClassesFromDatabaseListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            UserObject users = dataSnapshot.child(sidET.getText().toString()).getValue(UserObject.class);
 
-                        Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
-                        intent1.putExtra("id", signIds);
-                        startActivity(intent1);
+                            //if there is the data of SID
+                            if (users != null) {
+                                Toast.makeText(getApplicationContext(), "There is the same SID in the database. Please check ID again", Toast.LENGTH_SHORT).show();
+                                sidET.setText("");
+                                nameET.setText("");
+                                pwET.setText("");
+                                pw2ET.setText("");
+                            } else {
+                                signIds = sidET.getText().toString();
+                                name = nameET.getText().toString();
+                                signPWs = pwET.getText().toString();
+                                secondPW = pw2ET.getText().toString();
 
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Re-Password didn't match to Password",Toast.LENGTH_SHORT).show();
-                    }
+                                UserObject userObject = new UserObject(signIds, name, classes, signPWs);
+
+                                firebaseInstanceData.firebaseReferenceUsers.child(userObject.bannerID).setValue(userObject);
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    };
+
+                    firebaseInstanceData.firebaseReferenceUsers.addListenerForSingleValueEvent(getClassesFromDatabaseListener);
+                    firebaseInstanceData.firebaseReferenceUsers.push();
                 }
-                // second input of password didn't match to first input
-
                 else {
-                    pw2ET.setText("");
+                    Toast.makeText(getApplicationContext(), "The second input of password doesn't match with the first input", Toast.LENGTH_SHORT).show();
                     pwET.setText("");
-                    Toast.makeText(getApplicationContext(), "There is same ID in database",Toast.LENGTH_SHORT).show();
+                    pw2ET.setText("");
                 }
             }
         });
@@ -93,19 +119,11 @@ public class signIn extends AppCompatActivity {
         this.secondPW = secondPW;
     }
 
-    public String getFname() {
-        return fname;
+    public String getname() {
+        return name;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setname(String fname) {
+        this.name = fname;
     }
 }

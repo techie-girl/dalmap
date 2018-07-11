@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
@@ -41,6 +42,7 @@ public class Login extends AppCompatActivity {
         startService(NotificationServiceIntent);
 
         Button bt1 = findViewById(R.id.submitBT);
+        Button bt2 = findViewById(R.id.cancelBT);
         final TextView tvSign = findViewById(R.id.sign);
         final EditText idEditText = findViewById(R.id.idInput);
         final EditText pwEditText = findViewById(R.id.pwInput);
@@ -55,57 +57,45 @@ public class Login extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-               ValueEventListener pwListener = new ValueEventListener() {
+                ValueEventListener pwListener = new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        UserObject users = dataSnapshot.getValue(UserObject.class);
-                        setPasswords(users.password);
+                        UserObject users = dataSnapshot.child(idEditText.getText().toString()).getValue(UserObject.class);
 
+                        //if there is the data of SID
+                        if (users != null) {
+                            setPasswords(users.password);
+
+                            if (passwords.equals(pwEditText.getText().toString())) {
+                                setIds(idEditText.getText().toString());
+                                idEditText.setText("");
+                                pwEditText.setText("");
+
+                                Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
+                                intent1.putExtra("id", ids);
+                                startActivity(intent1);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Password doesn't match. Please check ID and Password again", Toast.LENGTH_SHORT).show();
+                                idEditText.setText("");
+                                pwEditText.setText("");
+                            }
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Invalid SID. Please check ID again", Toast.LENGTH_SHORT).show();
+                            idEditText.setText("");
+                            pwEditText.setText("");
+                        }
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Log.d(TAG,"The read failed: " + databaseError.toException());
+                        Toast.makeText(getApplicationContext(), "The read failed: " + databaseError.toException(), Toast.LENGTH_SHORT).show();
                     }
-               };
+                };
 
-               //move to the specified node with userID
-               String location ="users/"+idEditText.getText().toString();
-               final FirebaseDatabase firebaseRefspecifiedUser = FirebaseDatabase.getInstance();
-               DatabaseReference ref = firebaseRefspecifiedUser.getReference(location);
-
-               ref.addListenerForSingleValueEvent(pwListener);
-/*
-               if (passwords.equals(pwEditText.getText().toString())) {
-                   setIds(idEditText.getText().toString());
-                   idEditText.setText("");
-                   pwEditText.setText("");
-
-                   Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
-                   intent1.putExtra("id", ids);
-                   startActivity(intent1);
-               }
-               else {
-                   Toast.makeText(getApplicationContext(), "Failed to Login. Please check ID and Password again",Toast.LENGTH_SHORT).show();
-                   idEditText.setText("");
-                   pwEditText.setText("");
-               } */
-
-                if (true) {
-                    setIds(idEditText.getText().toString());
-                    idEditText.setText("");
-                    pwEditText.setText("");
-
-                    Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
-                    intent1.putExtra("id", ids);
-                    startActivity(intent1);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Failed to Login. Please check ID and Password again",Toast.LENGTH_SHORT).show();
-                    idEditText.setText("");
-                    pwEditText.setText("");
-                }
+                //If there is no data with user input, return null
+                Query query = firebaseInstanceData.firebaseReferenceUsers.orderByChild("bannerID").equalTo(idEditText.getText().toString());
+                query.addListenerForSingleValueEvent(pwListener);
 
             }
         });
@@ -117,6 +107,14 @@ public class Login extends AppCompatActivity {
 
                 startActivity(intent2);
 
+            }
+        });
+
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idEditText.setText("");
+                pwEditText.setText("");
             }
         });
 
