@@ -4,18 +4,13 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.FloatMath;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class KillamFloorPlanActivity extends AppCompatActivity implements View.OnTouchListener{
-
-    private static final String TAG = "Touch";
-    @SuppressWarnings("unused")
-    private static final float MIN_ZOOM = 1f,MAX_ZOOM = 1f;
 
     // These matrices will be used to scale points of the image
     Matrix matrix = new Matrix();
@@ -32,6 +27,7 @@ public class KillamFloorPlanActivity extends AppCompatActivity implements View.O
     PointF mid = new PointF();
     float oldDist = 1f;
 
+    boolean maping = false;
     int currentImage = 1;
 
     protected void onCreate(Bundle savedBundleState){
@@ -42,13 +38,24 @@ public class KillamFloorPlanActivity extends AppCompatActivity implements View.O
 
         Button nextFloorButton = (Button) findViewById(R.id.killam_floor_plan_next_button);
         Button previousFloorButton = (Button) findViewById(R.id.killam_floor_plan_back_button);
+        Button mappingButton = (Button) findViewById(R.id.killam_floor_plan_mapping_button);
+        final TextView travelTimeText = (TextView) findViewById(R.id.killam_floor_plan_traveltime_text);
 
         killamFloorPlanImage.setOnTouchListener(this);
+
 
         final int[] levels = {R.mipmap.kil_basement, R.mipmap.kil_1, R.mipmap.kil_2,
                 R.mipmap.kil_3, R.mipmap.kil_4, R.mipmap.kil_5};
 
         killamFloorPlanImage.setImageResource(R.mipmap.kil_1);
+
+        mappingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                maping = true;
+                travelTimeText.setText("Click your current \nlocation and destination at the same time");
+            }
+        });
 
         nextFloorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,77 +83,98 @@ public class KillamFloorPlanActivity extends AppCompatActivity implements View.O
     public boolean onTouch(View v, MotionEvent event) {
         ImageView view = (ImageView) v;
         view.setScaleType(ImageView.ScaleType.MATRIX);
-        float scale;
+        float scale, x, y;
 
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
-            case MotionEvent.ACTION_DOWN:   // first finger down only
-                savedMatrix.set(matrix);
-                start.set(event.getX(), event.getY());
-                mode = DRAG;
-                break;
-
-            case MotionEvent.ACTION_UP: // first finger lifted
-            case MotionEvent.ACTION_POINTER_UP: // second finger lifted
-                mode = NONE;
-                break;
-
-            case MotionEvent.ACTION_POINTER_DOWN: // first and second finger down
-                oldDist = spacing(event);
-                if (oldDist > 5f) {
+        if(!maping) {
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:   // first finger down only
                     savedMatrix.set(matrix);
-                    midPoint(mid, event);
-                    mode = ZOOM;
-                }
-                break;
+                    start.set(event.getX(), event.getY());
+                    mode = DRAG;
+                    break;
 
-            case MotionEvent.ACTION_MOVE:
+                case MotionEvent.ACTION_UP: // first finger lifted
+                case MotionEvent.ACTION_POINTER_UP: // second finger lifted
+                    mode = NONE;
+                    break;
 
-                if (mode == DRAG){
-                    matrix.set(savedMatrix);
-                    matrix.postTranslate(event.getX() - start.x, event.getY() - start.y); // create the transformation in the matrix  of points
-                }
-                else if (mode == ZOOM) {
-                    // pinch zooming
-                    float newDist = spacing(event);
-                    if (newDist > 5f) {
-                        matrix.set(savedMatrix);
-                        scale = newDist / oldDist; // setting the scaling of the
-                        // matrix...if scale > 1 means
-                        // zoom in...if scale < 1 means
-                        // zoom out
-                        matrix.postScale(scale, scale, mid.x, mid.y);
+                case MotionEvent.ACTION_POINTER_DOWN: // first and second finger down
+                    x = event.getX(0) - event.getX(1);
+                    y = event.getY(0) - event.getY(1);
+                    oldDist = (float) Math.sqrt(x * x + y * y);
+                    if (oldDist > 5f) {
+                        savedMatrix.set(matrix);
+
+                        x = event.getX(0) + event.getX(1);
+                        y = event.getY(0) + event.getY(1);
+                        mid.set(x / 2, y / 2);
+                        mode = ZOOM;
                     }
-                }
-                break;
+                    break;
+
+                case MotionEvent.ACTION_MOVE:
+
+                    if (mode == DRAG) {
+                        matrix.set(savedMatrix);
+                        matrix.postTranslate(event.getX() - start.x, event.getY() - start.y); // create the transformation in the matrix  of points
+                    } else if (mode == ZOOM) {
+                        // pinch zooming
+                        x = event.getX(0) - event.getX(1);
+                        y = event.getY(0) - event.getY(1);
+                        float newDist = (float) Math.sqrt(x * x + y * y);
+                        if (newDist > 5f) {
+                            matrix.set(savedMatrix);
+                            scale = newDist / oldDist; // setting the scaling of the
+                            // matrix...if scale > 1 means
+                            // zoom in...if scale < 1 means
+                            // zoom out
+                            matrix.postScale(scale, scale, mid.x, mid.y);
+                        }
+                    }
+                    break;
+            }
+            view.setImageMatrix(matrix); // display the transformation on screen
         }
-        view.setImageMatrix(matrix); // display the transformation on screen
+        else{
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_POINTER_DOWN: // first and second finger down
+                    float sourceX = event.getX(0);
+                    float sourceY = event.getY(0);
+                    float xOfInterest = event.getX(1);
+                    float yOfInterest = event.getY(1);
+                    applyDijkstra(currentImage, (int)xOfInterest, (int)yOfInterest, (int)sourceX, (int)sourceY);
+                    maping = false;
+                    break;
+            }
+        }
+
         return true; // indicate event was handled
     }
 
-    /*
-     * --------------------------------------------------------------------------
-     * Method: spacing Parameters: MotionEvent Returns: float Description:
-     * checks the spacing between the two fingers on touch
-     * ----------------------------------------------------
-     */
+    public void applyDijkstra(int floorOfInterest, int xOfInterest, int yOfInterest, int sourceX, int sourceY){
 
-    private float spacing(MotionEvent event) {
-        float x = event.getX(0) - event.getX(1);
-        float y = event.getY(0) - event.getY(1);
-        return (float) Math.sqrt(x * x + y * y);
+        final int[] BWs = {R.mipmap.kil_basement_bw, R.mipmap.kil_1_bw, R.mipmap.kil_2_bw,
+                R.mipmap.kil_3_bw, R.mipmap.kil_4_bw, R.mipmap.kil_5_bw};
+
+        //Bitmap currentFloor = BitmapFactory.decodeResource(getResources(), BWs[floorOfInterest]);
+
+        TextView travelTimeText = (TextView) findViewById(R.id.killam_floor_plan_traveltime_text);
+
+        //int[][] pixels = new int[currentFloor.getWidth()/2][currentFloor.getHeight()/2];
+        //System.out.println("made empty array");
+        //for(int i = 0; i < currentFloor.getWidth(); i+=2){
+        //    for(int j = 0; j < currentFloor.getHeight(); j+=2){
+        //        pixels[i][j] = Color.red(currentFloor.getPixel(i, j)); //all RGB values are the same in the BW images
+        //    }
+        //}
+
+        int currentX = sourceX;
+        int currentY = sourceY;
+
+        float distance = (float)Math.sqrt(((currentX-xOfInterest)*(currentX-xOfInterest))+((currentY-yOfInterest)*(currentY-yOfInterest)));
+
+        //21 pixels per meter, 1m/s walking speed
+        travelTimeText.setText(String.valueOf(distance/21));
+
     }
-
-    /*
-     * --------------------------------------------------------------------------
-     * Method: midPoint Parameters: PointF object, MotionEvent Returns: void
-     * Description: calculates the midpoint between the two fingers
-     * ------------------------------------------------------------
-     */
-
-    private void midPoint(PointF point, MotionEvent event) {
-        float x = event.getX(0) + event.getX(1);
-        float y = event.getY(0) + event.getY(1);
-        point.set(x / 2, y / 2);
-    }
-
 }
