@@ -23,7 +23,7 @@ public class KillamInfoActivity extends AppCompatActivity {
         Services.setText("Services: Bistro\nHours: 11-5 Mon-Fri\nLocation: Killam Library South Learning Commons");
         Building.setText("Hours:7:30am-9pm\n");
 
-        kilFloorPlanButton.setImageResource(R.drawable.kil_1);
+        kilFloorPlanButton.setImageResource(R.mipmap.kil_1);
 
         kilFloorPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
