@@ -20,8 +20,7 @@ public class signIn extends AppCompatActivity {
         Button bt1 = findViewById(R.id.signsubBT);
         Button bt2 = findViewById(R.id.signcancelBT);
 
-        EditText fnameET = findViewById(R.id.fnameInput);
-        EditText lnameET = findViewById(R.id.lnameInput);
+        EditText fnameET = findViewById(R.id.nameInput);
         final EditText sidET = findViewById(R.id.signIDinput);
         final EditText pwET = findViewById(R.id.signPWinput);
         final EditText pw2ET = findViewById(R.id.signSPWinput);

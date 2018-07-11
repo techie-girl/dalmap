@@ -15,6 +15,7 @@ public class FirebaseUserBuilder extends AppCompatActivity {
     protected void onCreate(Bundle savedBundleState){
         super.onCreate(savedBundleState);
 
+
         final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
 
         //ValueEventListener that retrieves the classes data set from firebase as a DataSnapshot
@@ -32,9 +33,9 @@ public class FirebaseUserBuilder extends AppCompatActivity {
                 }
 
                 //Create 3 UserObjects with fake data
-                UserObject userObject = new UserObject("B00123456", "John Smith", classes);
-                UserObject userObject2 = new UserObject("B00654321", "Sam Jones", classes);
-                UserObject userObject3 = new UserObject("B00918273", "Frank Stevens", classes);
+                UserObject userObject = new UserObject("B00123456", "John Smith", classes, "123456");
+                UserObject userObject2 = new UserObject("B00654321", "Sam Jones", classes, "654321");
+                UserObject userObject3 = new UserObject("B00918273", "Frank Stevens", classes, "918273");
 
                 //Push the UserObjects to the database
                 firebaseInstanceData.firebaseReferenceUsers.child(userObject.bannerID).setValue(userObject);

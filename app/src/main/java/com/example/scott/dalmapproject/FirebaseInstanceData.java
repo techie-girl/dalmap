@@ -7,7 +7,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseInstanceData extends Application{
 
-    public DatabaseReference firebaseReferenceClasses;
-    public DatabaseReference firebaseReferenceUsers;
+    public DatabaseReference firebaseReferenceClasses, firebaseRefspecifiedUser, firebaseReferenceUsers;
     public FirebaseDatabase firebaseDBInstance;
 }

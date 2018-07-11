@@ -10,11 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.annotation.NonNull;
+import java.util.ArrayList;
+
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -22,6 +29,7 @@ public class Login extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,53 +40,86 @@ public class Login extends AppCompatActivity {
         Intent NotificationServiceIntent = new Intent(getApplicationContext(), NotificationService.class);
         startService(NotificationServiceIntent);
 
-        //Initialize the firebase shared variables
-        FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplication();
-        firebaseInstanceData.firebaseDBInstance = FirebaseDatabase.getInstance();
-        firebaseInstanceData.firebaseReferenceClasses = firebaseInstanceData.firebaseDBInstance.getReference("classes");
-        firebaseInstanceData.firebaseReferenceUsers = firebaseInstanceData.firebaseDBInstance.getReference("users");
-
-
         Button bt1 = findViewById(R.id.submitBT);
         final TextView tvSign = findViewById(R.id.sign);
         final EditText idEditText = findViewById(R.id.idInput);
         final EditText pwEditText = findViewById(R.id.pwInput);
 
+
+        //Initialize the firebase shared variables
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplication();
+        firebaseInstanceData.firebaseDBInstance = FirebaseDatabase.getInstance();
+        firebaseInstanceData.firebaseReferenceClasses = firebaseInstanceData.firebaseDBInstance.getReference("classes");
+        firebaseInstanceData.firebaseReferenceUsers = firebaseInstanceData.firebaseDBInstance.getReference("users");
+
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataBaseCommunication bc = new dataBaseCommunication();
 
-                // if login done successfully
-                if (bc.loginValidCheck(idEditText.getText().toString(), pwEditText.getText().toString())) {
+               ValueEventListener pwListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        UserObject users = dataSnapshot.getValue(UserObject.class);
+                        setPasswords(users.password);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.d(TAG,"The read failed: " + databaseError.toException());
+                    }
+               };
+
+               //move to the specified node with userID
+               String location ="users/"+idEditText.getText().toString();
+               final FirebaseDatabase firebaseRefspecifiedUser = FirebaseDatabase.getInstance();
+               DatabaseReference ref = firebaseRefspecifiedUser.getReference(location);
+
+               ref.addListenerForSingleValueEvent(pwListener);
+/*
+               if (passwords.equals(pwEditText.getText().toString())) {
+                   setIds(idEditText.getText().toString());
+                   idEditText.setText("");
+                   pwEditText.setText("");
+
+                   Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
+                   intent1.putExtra("id", ids);
+                   startActivity(intent1);
+               }
+               else {
+                   Toast.makeText(getApplicationContext(), "Failed to Login. Please check ID and Password again",Toast.LENGTH_SHORT).show();
+                   idEditText.setText("");
+                   pwEditText.setText("");
+               } */
+
+                if (true) {
                     setIds(idEditText.getText().toString());
-                    setPasswords(pwEditText.getText().toString());
                     idEditText.setText("");
                     pwEditText.setText("");
 
                     Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
                     intent1.putExtra("id", ids);
                     startActivity(intent1);
-
                 }
-
                 else {
                     Toast.makeText(getApplicationContext(), "Failed to Login. Please check ID and Password again",Toast.LENGTH_SHORT).show();
                     idEditText.setText("");
                     pwEditText.setText("");
-
                 }
+
             }
         });
 
         tvSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), signIn.class);
+                Intent intent2 = new Intent(getApplicationContext(), signIn.class);;
+
                 startActivity(intent2);
 
             }
         });
+
     }
 
     public boolean isServicesOK(){

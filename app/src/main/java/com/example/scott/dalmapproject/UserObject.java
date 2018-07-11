@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class UserObject {
 
-    public String bannerID;
-    public String name;
+    public String bannerID, name, password;
     public ArrayList<String> classes;
 
     public UserObject(){
@@ -17,10 +16,11 @@ public class UserObject {
     }
 
     //Main constructor for building UserObjects
-    public UserObject(String bannerID, String name, ArrayList<String> classes){
+    public UserObject(String bannerID, String name, ArrayList<String> classes, String password){
         this.bannerID = bannerID;
         this.name = name;
         this.classes = classes;
+        this.password = password;
     }
 
     /**
@@ -34,6 +34,7 @@ public class UserObject {
         result.put("bannerID", bannerID);
         result.put("name", name);
         result.put("classes", classes);
+        result.put("password", password);
 
         return result;
     }

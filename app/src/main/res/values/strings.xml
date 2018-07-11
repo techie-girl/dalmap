@@ -13,8 +13,7 @@
     <string name="cancelBT">Cancel</string>
 
     <string name="idHint">Dalhousie Student ID</string>
-    <string name="lname">Last Name</string>
-    <string name="fname">First Name</string>
+    <string name="name">Name</string>
     <string name="repw">Re-Password</string>
     <string name="repwhint">Type password again</string>
     <string name="semester">Semester</string>
