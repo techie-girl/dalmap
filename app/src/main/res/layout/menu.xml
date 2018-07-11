@@ -5,6 +5,14 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/menu_log_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/brightGrey"/>
+
+    <Button
         android:id="@+id/select1"
         android:layout_width="250dp"
         android:layout_height="70dp"

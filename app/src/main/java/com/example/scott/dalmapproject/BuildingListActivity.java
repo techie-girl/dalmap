@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class BuildingListActivity extends AppCompatActivity {
@@ -15,6 +16,25 @@ public class BuildingListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_list);
+
+        Button logoutButton = (Button)findViewById(R.id.building_list_log_out_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.logout_layout);
+                Button confirmButton = (Button)findViewById(R.id.confirm_log_out_button);
+
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent relaunch = new Intent(getApplicationContext(), Login.class);
+                        startActivity(relaunch);
+                    }
+                });
+                finish();
+            }
+        });
 
         listView = (ListView) findViewById(R.id.lists);
 

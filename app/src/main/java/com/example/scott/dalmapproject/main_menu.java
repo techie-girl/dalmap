@@ -14,6 +14,26 @@ public class main_menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+
+        Button logoutButton = (Button)findViewById(R.id.menu_log_out_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.logout_layout);
+                Button confirmButton = (Button)findViewById(R.id.confirm_log_out_button);
+
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent relaunch = new Intent(getApplicationContext(), Login.class);
+                        startActivity(relaunch);
+                    }
+                });
+                finish();
+            }
+        });
+
         {
             Button bt1 = findViewById(R.id.select1);
             Button bt2 = findViewById(R.id.select2);

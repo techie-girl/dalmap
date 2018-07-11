@@ -98,6 +98,26 @@ public class ClassListActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
+        Button logoutButton = (Button)findViewById(R.id.class_list_log_out_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setContentView(R.layout.logout_layout);
+                Button confirmButton = (Button)findViewById(R.id.confirm_log_out_button);
+
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent relaunch = new Intent(getApplicationContext(), Login.class);
+                        startActivity(relaunch);
+                    }
+                });
+                finish();
+            }
+        });
+
         //Gets the ListView from the layout resource file by id
         final ListView listView = this.findViewById(R.id.Class_List_List_View);
         listViewFilter = findViewById(R.id.List_View_Filter);
