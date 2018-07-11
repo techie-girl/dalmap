@@ -18,12 +18,14 @@ public class KillamInfoActivity extends AppCompatActivity {
         TextView Services = (TextView) findViewById(R.id.Services);
         TextView Building = (TextView) findViewById(R.id.building);
         ImageButton kilFloorPlanButton = (ImageButton) findViewById(R.id.kil_floor_plan_button);
+        ImageButton kilVisualAidButton = (ImageButton) findViewById(R.id.kil_visual_aid_button);
 
         //Set service info text
         Services.setText("Services: Bistro\nHours: 11-5 Mon-Fri\nLocation: Killam Library South Learning Commons");
         Building.setText("Hours:7:30am-9pm\n");
 
         kilFloorPlanButton.setImageResource(R.mipmap.kil_1);
+        kilVisualAidButton.setImageResource(R.mipmap.kil_1_bw);
 
         kilFloorPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,5 +34,15 @@ public class KillamInfoActivity extends AppCompatActivity {
                 startActivity(LaunchKillamFloorPlan);
             }
         });
+
+        kilVisualAidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LaunchKillamVisualAid = new Intent(getApplicationContext(), KillamVisualAidActivity.class);
+                startActivity(LaunchKillamVisualAid);
+            }
+        });
+
+
     }
 }

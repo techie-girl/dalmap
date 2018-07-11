@@ -1,27 +1,39 @@
 {
   "project_info": {
-    "project_number": "620037618504",
-    "firebase_url": "https://dalmap-7dfa8.firebaseio.com",
-    "project_id": "dalmap-7dfa8",
-    "storage_bucket": "dalmap-7dfa8.appspot.com"
+    "project_number": "498610789019",
+    "firebase_url": "https://dalmapproject.firebaseio.com",
+    "project_id": "dalmapproject",
+    "storage_bucket": "dalmapproject.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:620037618504:android:22103ff88b31a94a",
+        "mobilesdk_app_id": "1:498610789019:android:22103ff88b31a94a",
         "android_client_info": {
           "package_name": "com.example.scott.dalmapproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "620037618504-bqia58a9jarcls5ivpbqgh9s75g5s4j9.apps.googleusercontent.com",
+          "client_id": "498610789019-5gtqqiv6s7ifcaopa1gg5gvrijph4olm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scott.dalmapproject",
+            "certificate_hash": "0f339c28d20d379a7f349fc758c5c4c90704043f"
+          }
+        },
+        {
+          "client_id": "498610789019-m71ccktl0uq338vurffp6r76h3rp07re.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "498610789019-m71ccktl0uq338vurffp6r76h3rp07re.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyClrLzJaIjlu4NcuH-Syxt0jUd8kEmDUwY"
+          "current_key": "AIzaSyDCsrAsRqqI4DEnG7m4PnwC4LDdbjfrM_E"
         }
       ],
       "services": {
@@ -29,8 +41,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498610789019-m71ccktl0uq338vurffp6r76h3rp07re.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
