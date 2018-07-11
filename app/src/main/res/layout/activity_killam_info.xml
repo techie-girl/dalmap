@@ -27,4 +27,11 @@
         android:id="@+id/kil_floor_plan_button"
         android:layout_below="@+id/Services"/>
 
+    <ImageButton
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/kil_visual_aid_button"
+        android:layout_toEndOf="@+id/kil_floor_plan_button"
+        android:layout_below="@+id/Services"/>
+
 </RelativeLayout>

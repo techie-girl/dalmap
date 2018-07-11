@@ -107,6 +107,14 @@
 
         <activity android:name=".MapActivity"/>
 
+        <activity android:name=".KillamVisualAidActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDjn7aKnY8NrWdkxTHC5gNgz7P_P3T6wVM"/>
