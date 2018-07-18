@@ -7,12 +7,11 @@
 
     <TextView
         android:id="@+id/signTitle"
-        android:layout_width="104dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/brightGrey"
         android:gravity="center"
-        android:text="@string/signin"
+        android:text="@string/signup"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +152,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/cancelBT"
+        android:text="@string/cancel"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"

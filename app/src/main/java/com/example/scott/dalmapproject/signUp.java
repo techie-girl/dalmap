@@ -14,14 +14,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-public class signIn extends AppCompatActivity {
+public class signUp extends AppCompatActivity {
 
     private String signIds, signPWs, secondPW, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signin_page);
+        setContentView(R.layout.signup_page);
 
         Button bt1 = findViewById(R.id.signsubBT);
         Button bt2 = findViewById(R.id.signcancelBT);
@@ -55,7 +55,7 @@ public class signIn extends AppCompatActivity {
                                 pwET.setText("");
                                 pw2ET.setText("");
                             } else {
-                                signIds = sidET.getText().toString();
+                                signIds = sidET.getText().toString().toUpperCase();
                                 name = nameET.getText().toString();
                                 signPWs = pwET.getText().toString();
                                 secondPW = pw2ET.getText().toString();

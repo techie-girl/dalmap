@@ -36,10 +36,17 @@ public class ClassListActivity extends AppCompatActivity {
     SearchView searchView;
     ArrayList<String> classes = new ArrayList<>();
     ArrayList<ClassObject> classObjects = new ArrayList<>();
+    ArrayList<String> userClasses = new ArrayList<>();
+    String ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        Bundle user = getIntent().getExtras();
+        userClasses = user.getStringArrayList("myclasses");
+        ids = (String)user.get("ids");
+
         setContentView(R.layout.activity_class_list);
 
         /**Only uncomment when you want to add more classes to the database
@@ -124,29 +131,54 @@ public class ClassListActivity extends AppCompatActivity {
 
         final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
 
-        //ValueEventListener that retrieves the classes data set from firebase as a DataSnapshot
-        final ValueEventListener getClassesFromDatabaseListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        // display login user's class lists
+        if(userClasses != null) {
+            ValueEventListener getClassesFromDatabaseListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                //Adds every class in the Class tree to the classes ArrayList
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    classes.add(ds.getValue(ClassObject.class).courseID + " - " +
-                            ds.getValue(ClassObject.class).courseTitle);
-                    //also adds the ClassObjects to another array list used to access the rest of the class information
-                    classObjects.add(ds.getValue(ClassObject.class));
+                    for (String s : userClasses) {
+                        classes.add(dataSnapshot.child(s).getValue(ClassObject.class).courseID + " - " +
+                                dataSnapshot.child(s).getValue(ClassObject.class).courseTitle);
+                        //also adds the ClassObjects to another array list used to access the rest of the class information
+                        classObjects.add(dataSnapshot.child(s).getValue(ClassObject.class));
+                    }
                 }
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            //How to respond when the database lookup has been canceled. Ignored for now
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            };
+            firebaseInstanceData.firebaseReferenceClasses.addListenerForSingleValueEvent(getClassesFromDatabaseListener);
+        }
 
-            }
-        };
-        //Add a ValueEventListener that will get all the children in the Classes section
-        //Runs getClassesFromDatabaseListener once when the class is first run, then again when values change in the DB
-        firebaseInstanceData.firebaseReferenceClasses.addListenerForSingleValueEvent(getClassesFromDatabaseListener);
+        // display all class lists on firebase
+        else {
+            //ValueEventListener that retrieves the classes data set from firebase as a DataSnapshot
+            ValueEventListener getClassesFromDatabaseListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    //Adds every class in the Class tree to the classes ArrayList
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        classes.add(ds.getValue(ClassObject.class).courseID + " - " +
+                                ds.getValue(ClassObject.class).courseTitle);
+                        //also adds the ClassObjects to another array list used to access the rest of the class information
+                        classObjects.add(ds.getValue(ClassObject.class));
+                    }
+                }
+
+                //How to respond when the database lookup has been canceled. Ignored for now
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            };
+
+            //Add a ValueEventListener that will get all the children in the Classes section
+            //Runs getClassesFromDatabaseListener once when the class is first run, then again when values change in the DB
+            firebaseInstanceData.firebaseReferenceClasses.addListenerForSingleValueEvent(getClassesFromDatabaseListener);
+        }
 
         final ArrayAdapter<String> firebaseAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, classes);
@@ -174,7 +206,6 @@ public class ClassListActivity extends AppCompatActivity {
                 firebaseAdapter.getFilter().filter(s.toString());
             }
         });
-
 
         //How to respond to a list item being clicked
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -1,6 +1,8 @@
 package com.example.scott.dalmapproject;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,26 +13,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.annotation.NonNull;
-import java.util.ArrayList;
-
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    private String ids, passwords;
+    private String ids, passwords, userID;
 
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ public class Login extends AppCompatActivity {
         startService(NotificationServiceIntent);
 
         Button bt1 = findViewById(R.id.submitBT);
-        Button bt2 = findViewById(R.id.cancelBT);
+        Button bt2 = findViewById(R.id.exitBT);
         final TextView tvSign = findViewById(R.id.sign);
         final EditText idEditText = findViewById(R.id.idInput);
         final EditText pwEditText = findViewById(R.id.pwInput);
@@ -57,17 +55,18 @@ public class Login extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userID = idEditText.getText().toString().toUpperCase();
                 ValueEventListener pwListener = new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        UserObject users = dataSnapshot.child(idEditText.getText().toString()).getValue(UserObject.class);
+                        UserObject users = dataSnapshot.child(userID).getValue(UserObject.class);
 
                         //if there is the data of SID
                         if (users != null) {
                             setPasswords(users.password);
 
                             if (passwords.equals(pwEditText.getText().toString())) {
-                                setIds(idEditText.getText().toString());
+                                setIds(userID);
                                 idEditText.setText("");
                                 pwEditText.setText("");
 
@@ -94,7 +93,7 @@ public class Login extends AppCompatActivity {
                 };
 
                 //If there is no data with user input, return null
-                Query query = firebaseInstanceData.firebaseReferenceUsers.orderByChild("bannerID").equalTo(idEditText.getText().toString());
+                Query query = firebaseInstanceData.firebaseReferenceUsers.orderByChild("bannerID").equalTo(userID);
                 query.addListenerForSingleValueEvent(pwListener);
 
             }
@@ -103,18 +102,42 @@ public class Login extends AppCompatActivity {
         tvSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), signIn.class);;
-
+                Intent intent2 = new Intent(getApplicationContext(), signUp.class);;
                 startActivity(intent2);
+                finish();
 
             }
         });
 
         bt2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                idEditText.setText("");
-                pwEditText.setText("");
+
+                //final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                final AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+                builder.setTitle("Exit");
+                builder.setMessage("Do you want to exit ??");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int button) {
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        //System.exit(0);
+                        //finishAffinity();
+                        //Login.this.finish();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int button) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
             }
         });
 
