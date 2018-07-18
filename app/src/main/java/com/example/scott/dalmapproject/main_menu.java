@@ -2,12 +2,21 @@ package com.example.scott.dalmapproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.os.Handler;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class main_menu extends AppCompatActivity {
 
+    private ArrayList<String> userObjects = new ArrayList<>();
     private String sid;
 
     @Override
@@ -15,7 +24,18 @@ public class main_menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
+        Bundle ids = getIntent().getExtras();
+        sid = (String)ids.get("id");
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
+        String location = "users/"+sid+"/classes";
+        firebaseInstanceData.firebaseUserClasses = firebaseInstanceData.firebaseDBInstance.getReference(location);
+
         Button logoutButton = (Button)findViewById(R.id.menu_log_out_button);
+        Button bt1 = findViewById(R.id.select1);
+        Button bt2 = findViewById(R.id.select2);
+        Button bt3 = findViewById(R.id.select3);
+        Button bt4 = findViewById(R.id.select4);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,57 +54,79 @@ public class main_menu extends AppCompatActivity {
             }
         });
 
-        {
-            Button bt1 = findViewById(R.id.select1);
-            Button bt2 = findViewById(R.id.select2);
-            Button bt3 = findViewById(R.id.select3);
-            Button bt4 = findViewById(R.id.select4);
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            Bundle ids = getIntent().getExtras();
-            sid = (String)ids.get("id");
+                //ValueEventListener that retrieves the classes data set from firebase as a DataSnapshot
+                final ValueEventListener myClassesListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userObjects.clear();
 
-           bt1.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            userObjects.add(ds.getValue(String.class));
+                        }
+                    }
+                    //How to respond when the database lookup has been canceled. Ignored for now
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                   Intent intent1 = new Intent(getApplicationContext(), ClassListActivity.class);
-                   intent1.putExtra("id", sid);
-                   startActivity(intent1);
+                    }
+                };
+                //Add a ValueEventListener that will get all the children in the Classes section
+                //Runs getClassesFromDatabaseListener once when the class is first run, then again when values change in the DB
 
-               }
-           });
+                firebaseInstanceData.firebaseUserClasses.addListenerForSingleValueEvent(myClassesListener);
 
-           bt2.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
+                // Waiting for the firebase reading process to complete
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        // Pass the lists of specified user to ClassListActivity
+                        Intent intent1 = new Intent(getApplicationContext(), ClassListActivity.class);
+                        intent1.putExtra("myclasses", userObjects);
 
-                   Intent intent2 = new Intent(getApplicationContext(), ClassListActivity.class);
-                   intent2.putExtra("id", sid);
-                   startActivity(intent2);
-               }
-           });
+                        startActivity(intent1);
+                    }
+                }, 500);
+            }
+        });
 
-            bt3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                    Intent intent3 = new Intent(getApplicationContext(), BuildingListActivity.class);
-                    intent3.putExtra("id", sid);
-                    startActivity(intent3);
+                Intent intent2 = new Intent(getApplicationContext(), ClassListActivity.class);
+                intent2.putExtra("id", sid);
+                startActivity(intent2);
+            }
+        });
 
-                }
-            });
+        bt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(getApplicationContext(), BuildingListActivity.class);
+                intent3.putExtra("id", sid);
+                startActivity(intent3);
 
-            bt4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            }
+        });
+
+        bt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                     /*
                     Intent intent4 = new Intent(getApplicationContext(), ServiceListActivity.class);
                     intent2.putExtra("id", sid);
                     startActivity(intent4);
                     */
-                }
-            });
-        }
+            }
+        });
     }
 }
+
+
+
+
+
+
