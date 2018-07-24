@@ -1,3 +1,15 @@
+/**
+ *
+ * Creates the info activity for the Goldberg Building.
+ * Lists information such as services, hours, and location.
+ *
+ * @author Scott
+ * @author Chris
+ * @author Aqil
+ * @author Arazoo
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.os.Bundle;

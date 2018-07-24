@@ -1,3 +1,14 @@
+/**
+ * This creates a class object that will be stored in the class list.
+ * It holds all the information for a specific class.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import com.google.firebase.database.Exclude;
@@ -36,7 +47,32 @@ public class ClassObject {
         // Default constructor required for calls to DataSnapshot.getValue
     }
 
-    //Main constructor for building ClassObjects
+    /**
+     * Main constructor for building ClassObjects
+     * @param courseID Unique ID for the course
+     * @param courseTitle Course Name
+     * @param courseDuration Duration of class
+     * @param CRN
+     * @param section Section number
+     * @param lectureType Type of Lecture
+     * @param crHrs credited hours
+     * @param monday
+     * @param tuesday
+     * @param wednesday
+     * @param thursday
+     * @param friday
+     * @param startHour Hour the class starts
+     * @param startMinute minutes the class starts
+     * @param endHour hour the class ends
+     * @param endMinute minutes the class ends
+     * @param classLocation location of class
+     * @param seats available seats in class
+     * @param currentFull How many of those seats are taken
+     * @param availSeats Number of seats still available
+     * @param professor Name of professor teaching the course
+     * @param tuitionCode The tuition code
+     * @param bHrs
+     */
     public ClassObject(String courseID,String courseTitle,String courseDuration,int CRN,int section,
                        String lectureType,int crHrs,boolean monday,boolean tuesday,boolean wednesday,
                        boolean thursday,boolean friday,int startHour,int startMinute,int endHour,

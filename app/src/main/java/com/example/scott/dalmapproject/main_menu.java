@@ -1,3 +1,16 @@
+/**
+ * This is the main menu activity.
+ * This will be the main activity for navigation to the other activities in the app.
+ * It will add buttons to navigate to the classes list, etc.
+ * Pulls from the Firebase database to retrieve required information.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.content.Intent;

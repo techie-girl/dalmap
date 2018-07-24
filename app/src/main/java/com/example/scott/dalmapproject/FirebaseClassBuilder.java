@@ -1,3 +1,14 @@
+/**
+ *
+ * This creates class objects and enters them into the Firebase database.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.os.Bundle;

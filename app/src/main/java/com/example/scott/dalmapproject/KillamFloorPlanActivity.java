@@ -1,3 +1,15 @@
+/**
+ * Creates the floor plan for the Killam library.
+ * Shows the rooms on the floors.
+ * Shows the length of time between two selected points.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.graphics.Matrix;

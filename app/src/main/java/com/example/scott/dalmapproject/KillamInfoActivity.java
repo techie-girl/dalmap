@@ -1,3 +1,15 @@
+/**
+ *
+ * Creates the info activity for the Killam Library Building.
+ * Lists information such as services, hours, and location.
+ *
+ * @author Scott
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.content.Intent;
