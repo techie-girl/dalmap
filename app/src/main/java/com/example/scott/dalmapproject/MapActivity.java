@@ -1,3 +1,15 @@
+/**
+ * This is the activity for the map.
+ * The map will show all the locations available in the app.
+ * This activity initializes the map, gets location permission, and request permission result.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.Manifest;
@@ -35,6 +47,9 @@ public class MapActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * Initializes the map. sets mMap.
+     */
     private void initMap(){
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
@@ -48,6 +63,9 @@ public class MapActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * gets the location permissions for the map.
+     */
     private void getLocationPermission(){
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
@@ -64,6 +82,12 @@ public class MapActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     * gets the permissions results.
+     * @param requestCode code from request.
+     * @param permissions permissions being requested.
+     * @param grantResults the results if permissions were granted or not.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         mLocationPermissionGranted = false;

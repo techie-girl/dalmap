@@ -1,3 +1,14 @@
+/**
+ * Creates a class list that will display all available classes.
+ * Accomplished by retrieving data from Firebase database.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.app.SearchManager;
@@ -101,6 +112,11 @@ public class ClassListActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * onStart launches the activity.
+     * A logout button is created.
+     * When that logout button is clicked it sets content view to logout_layout
+     */
     @Override
     protected void onStart(){
         super.onStart();
@@ -189,17 +205,32 @@ public class ClassListActivity extends AppCompatActivity {
         //How to respond to the filter being changed
         listViewFilter.addTextChangedListener(new TextWatcher() {
 
-            //Do nothing while the text is being changed
+            /**
+             * Does nothing while text is being changed.
+             * @param s
+             * @param start
+             * @param before
+             * @param count
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
-            //Do nothing before the text is changed
+            /**
+             * Do nothing before the text is changed.
+             * @param s
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {
             }
 
-            //After the text is changed, apply the filter to the list
+            /**
+             * After the text is changed, apply the filter to the list
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
                 // Call back the Adapter with current character to Filter
@@ -207,8 +238,14 @@ public class ClassListActivity extends AppCompatActivity {
             }
         });
 
-        //How to respond to a list item being clicked
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * How to respond to a list item being clicked
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -294,8 +331,13 @@ public class ClassListActivity extends AppCompatActivity {
                     }
                 });
 
-                //How to respond when the popup window is clicked
                 popupView.setOnTouchListener(new View.OnTouchListener() {
+                    /**
+                     * How to respond when the popup window is clicked
+                     * @param v
+                     * @param event
+                     * @return
+                     */
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         //popupWindow.dismiss();

@@ -1,3 +1,14 @@
+/**
+ *
+ * Creates the Firebase database references and instances.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.app.Application;

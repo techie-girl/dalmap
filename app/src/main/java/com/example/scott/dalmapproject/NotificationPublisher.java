@@ -1,3 +1,13 @@
+/**
+ * Activity the publishes the notification for the app.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.app.Notification;

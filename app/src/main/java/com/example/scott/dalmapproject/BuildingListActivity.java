@@ -1,3 +1,17 @@
+/**
+ * Creates a listview used to see a list of buildings.
+ * The values of the building list are hard-coded.
+ * A button is created for logout on this activity.
+ * Activity listens for listview item clicks.
+ * If an item is clicked, it displays building info.
+ *
+ * @author Scott
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.content.Intent;
@@ -38,7 +52,7 @@ public class BuildingListActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.lists);
 
-        final String[] values = new String[]{"Henry Kicks", "Goldberg", "Killam Library"};
+        final String[] values = new String[]{"Henry Hicks", "Goldberg", "Killam Library"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, values);
