@@ -1,3 +1,16 @@
+/**
+ * This is the main menu activity.
+ * This will be the main activity for navigation to the other activities in the app.
+ * It will add buttons to navigate to the classes list, etc.
+ * Pulls from the Firebase database to retrieve required information.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.content.Intent;
@@ -7,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.os.Handler;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class main_menu extends AppCompatActivity {
+public class     main_menu extends AppCompatActivity {
 
     private ArrayList<String> userObjects = new ArrayList<>();
     private String sid;
@@ -22,7 +36,7 @@ public class main_menu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu);
+        setContentView(R.layout.main_menu);
 
         Bundle ids = getIntent().getExtras();
         sid = (String)ids.get("id");
@@ -31,11 +45,13 @@ public class main_menu extends AppCompatActivity {
         String location = "users/"+sid+"/classes";
         firebaseInstanceData.firebaseUserClasses = firebaseInstanceData.firebaseDBInstance.getReference(location);
 
-        Button logoutButton = (Button)findViewById(R.id.menu_log_out_button);
-        Button bt1 = findViewById(R.id.select1);
-        Button bt2 = findViewById(R.id.select2);
-        Button bt3 = findViewById(R.id.select3);
-        Button bt4 = findViewById(R.id.select4);
+        Button logoutButton = (Button)findViewById(R.id.menu_logout);
+
+        ImageButton bt1 = findViewById(R.id.ib1);
+        ImageButton bt2 = findViewById(R.id.ib2);
+        ImageButton bt3 = findViewById(R.id.ib3);
+        ImageButton bt4 = findViewById(R.id.ib4);
+
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,18 +131,12 @@ public class main_menu extends AppCompatActivity {
         bt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    /*
-                    Intent intent4 = new Intent(getApplicationContext(), ServiceListActivity.class);
-                    intent2.putExtra("id", sid);
-                    startActivity(intent4);
-                    */
+                /*
+                Intent intent4 = new Intent(getApplicationContext(), .class);
+                intent4.putExtra("id", sid);
+                startActivity(intent4);
+                */
             }
         });
     }
 }
-
-
-
-
-
-

@@ -1,3 +1,15 @@
+/**
+ * Activity for the notification service.
+ * App will send a notification when a user's class time is coming up.
+ * App checks user's classes, and will notify the user when the class starts.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.app.AlarmManager;
@@ -59,6 +71,11 @@ public class NotificationService extends Service {
     //Gotta add a comment to make the file different so it will commit
     //TODO remove this in a future commit
 
+    /**
+     * creates the notification channel.
+     * Only supported on API 26+.
+     * will register the channel with the system.
+     */
     //Creates a Notification Channel
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
@@ -76,6 +93,11 @@ public class NotificationService extends Service {
         }
     }
 
+    /**
+     * Creates the notification for the schedule, and calculates the time till class.
+     * @param notification notification to be sent.
+     * @param delay time delay.
+     */
     private void scheduleNotification(Notification notification, long delay) {
 
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
@@ -88,6 +110,11 @@ public class NotificationService extends Service {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
+    /**
+     * Gets the notification.
+     * @param content content that will be contained in the notification.
+     * @return build that creates the notification.
+     */
     private Notification getNotification(String content) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Class Reminder")

@@ -1,3 +1,15 @@
+/**
+ *
+ * Creates users and inserts them into the Firebase database.
+ * This allows for logging into the app.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.os.Bundle;

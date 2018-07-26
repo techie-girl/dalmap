@@ -1,3 +1,17 @@
+/**
+ * This is the activity for Login.
+ * This is the first activity the user will see.
+ * It will prompt the user to enter their info to log into the app.
+ * It will check the database to see if the user exists.
+ * If so, then the user will be logged into the app.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.app.AlertDialog;
@@ -143,6 +157,10 @@ public class Login extends AppCompatActivity {
 
     }
 
+    /**
+     * Checks to see if versions are compatible and if google play services are available.
+     * @return true if they are, false if they are not available.
+     */
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 
@@ -165,18 +183,34 @@ public class Login extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Simple method that sets the IDs.
+     * @param ids
+     */
     public void setIds(String ids) {
         this.ids = ids;
     }
 
+    /**
+     * GET method for retrieving the IDs.
+     * @return this id.
+     */
     public String getIds() {
         return this.ids;
     }
 
+    /**
+     * method to set the password.
+     * @param passwords gives passwords a value.
+     */
     public void setPasswords(String passwords) {
         this.passwords = passwords;
     }
 
+    /**
+     * Method to get the passwords.
+     * @return this passwords.
+     */
     public String getPasswords() {
         return this.passwords;
     }

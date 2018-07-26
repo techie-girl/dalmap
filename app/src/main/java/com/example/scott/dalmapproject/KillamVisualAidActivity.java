@@ -1,3 +1,15 @@
+/**
+ * This is the activity for the Visual Aid of the Killam Library.
+ * It displays images of the Killam Library.
+ * It also provides labels for the different images.
+ *
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.os.Bundle;

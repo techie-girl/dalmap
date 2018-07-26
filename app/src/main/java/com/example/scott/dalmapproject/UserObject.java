@@ -1,3 +1,14 @@
+/**
+ * This is the object that holds the information for the user.
+ * Constructs a user that has multiple attributes that define a user.
+ *
+ *  * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import com.google.firebase.database.Exclude;
