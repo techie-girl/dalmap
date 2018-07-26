@@ -3,9 +3,7 @@
     package="com.example.scott.dalmapproject">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -105,7 +103,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapActivity"/>
+        <activity android:name=".MapActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".KillamVisualAidActivity">
             <intent-filter>
@@ -117,7 +121,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDjn7aKnY8NrWdkxTHC5gNgz7P_P3T6wVM"/>
+            android:value="@string/google_maps_key"/>
 
 
         <meta-data
