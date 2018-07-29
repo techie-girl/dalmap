@@ -13,7 +13,7 @@
         android:textColor="@color/brightGrey" />
 
     <ImageButton
-        android:id="@+id/ib1"
+        android:id="@+id/scheduleButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -21,14 +21,14 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/myclasses"
-        app:layout_constraintBottom_toTopOf="@+id/ib3"
-        app:layout_constraintEnd_toStartOf="@+id/ib2"
+        app:layout_constraintBottom_toTopOf="@+id/buildingListButton"
+        app:layout_constraintEnd_toStartOf="@+id/classListButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ib2"
+        android:id="@+id/classListButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -36,14 +36,14 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/classeslists"
-        app:layout_constraintBottom_toTopOf="@+id/ib4"
+        app:layout_constraintBottom_toTopOf="@+id/servicesListButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ib1"
+        app:layout_constraintStart_toEndOf="@+id/scheduleButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ib3"
+        android:id="@+id/buildingListButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -52,13 +52,13 @@
         android:scaleType="fitCenter"
         android:src="@drawable/buildings"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ib4"
+        app:layout_constraintEnd_toStartOf="@+id/servicesListButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib1" />
+        app:layout_constraintTop_toBottomOf="@+id/scheduleButton" />
 
     <ImageButton
-        android:id="@+id/ib4"
+        android:id="@+id/servicesListButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -70,8 +70,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ib3"
-        app:layout_constraintTop_toBottomOf="@+id/ib2" />
+        app:layout_constraintStart_toEndOf="@+id/buildingListButton"
+        app:layout_constraintTop_toBottomOf="@+id/classListButton" />
 
 
 </android.support.constraint.ConstraintLayout>

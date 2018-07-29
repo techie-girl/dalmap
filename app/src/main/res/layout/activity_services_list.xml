@@ -6,8 +6,7 @@
     <ListView
         android:id="@+id/Service_List_List_View"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="45dp"/>
+        android:layout_height="match_parent"/>
 
     <EditText
         android:id="@+id/List_View_Filter"

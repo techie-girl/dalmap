@@ -54,6 +54,7 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMyLoca
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        killamFloorPlanButtonFunctionality();
     }
 
     /**
@@ -123,6 +124,7 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMyLoca
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), KillamFloorPlanActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
