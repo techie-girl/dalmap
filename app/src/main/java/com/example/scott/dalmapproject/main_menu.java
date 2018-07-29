@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class     main_menu extends AppCompatActivity {
+public class main_menu extends AppCompatActivity {
 
     private ArrayList<String> userObjects = new ArrayList<>();
     private String sid;
@@ -131,11 +131,9 @@ public class     main_menu extends AppCompatActivity {
         bt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent intent4 = new Intent(getApplicationContext(), .class);
-                intent4.putExtra("id", sid);
+
+                Intent intent4 = new Intent(getApplicationContext(), ServicesListActivity.class);
                 startActivity(intent4);
-                */
             }
         });
     }

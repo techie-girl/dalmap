@@ -65,6 +65,7 @@ public class Login extends AppCompatActivity {
         firebaseInstanceData.firebaseDBInstance = FirebaseDatabase.getInstance();
         firebaseInstanceData.firebaseReferenceClasses = firebaseInstanceData.firebaseDBInstance.getReference("classes");
         firebaseInstanceData.firebaseReferenceUsers = firebaseInstanceData.firebaseDBInstance.getReference("users");
+        firebaseInstanceData.firebaseReferenceServices = firebaseInstanceData.firebaseDBInstance.getReference("services");
 
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override

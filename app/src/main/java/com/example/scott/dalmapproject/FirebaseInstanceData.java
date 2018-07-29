@@ -20,6 +20,7 @@ public class FirebaseInstanceData extends Application{
 
     public DatabaseReference firebaseReferenceClasses;
     public DatabaseReference firebaseReferenceUsers;
+    public DatabaseReference firebaseReferenceServices;
     public DatabaseReference firebaseUserClasses;
     public FirebaseDatabase firebaseDBInstance;
 }
