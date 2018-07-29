@@ -41,15 +41,15 @@ public class FirebaseServiceBuilder extends AppCompatActivity {
         ServiceObject serviceObject9 = new ServiceObject("Henry Hicks", "Financial Services", hours);
 
         //Push the ServiceObjects to the database
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject1.name)).setValue(serviceObject1);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject2.name)).setValue(serviceObject2);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject3.name)).setValue(serviceObject3);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject4.name)).setValue(serviceObject4);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject5.name)).setValue(serviceObject5);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject6.name)).setValue(serviceObject6);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject7.name)).setValue(serviceObject7);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject8.name)).setValue(serviceObject8);
-        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject9.name)).setValue(serviceObject9);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject1.building + serviceObject1.name)).setValue(serviceObject1);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject2.building + serviceObject2.name)).setValue(serviceObject2);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject3.building + serviceObject3.name)).setValue(serviceObject3);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject4.building + serviceObject4.name)).setValue(serviceObject4);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject5.building + serviceObject5.name)).setValue(serviceObject5);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject6.building + serviceObject6.name)).setValue(serviceObject6);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject7.building + serviceObject7.name)).setValue(serviceObject7);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject8.building + serviceObject8.name)).setValue(serviceObject8);
+        firebaseInstanceData.firebaseReferenceServices.child(String.valueOf(serviceObject9.building + serviceObject9.name)).setValue(serviceObject9);
 
         firebaseInstanceData.firebaseReferenceServices.push();
         finish();

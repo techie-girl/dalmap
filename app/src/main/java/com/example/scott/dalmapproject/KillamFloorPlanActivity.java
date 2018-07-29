@@ -167,6 +167,7 @@ public class KillamFloorPlanActivity extends AppCompatActivity implements View.O
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
