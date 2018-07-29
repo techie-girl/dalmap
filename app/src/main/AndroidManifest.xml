@@ -105,9 +105,25 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".FirebaseServiceBuilder">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".MapActivity"/>
 
         <activity android:name=".KillamVisualAidActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ServicesListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

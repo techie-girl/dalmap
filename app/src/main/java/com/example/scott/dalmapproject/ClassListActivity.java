@@ -109,6 +109,10 @@ public class ClassListActivity extends AppCompatActivity {
         //Manage logout button
         logoutButton();
 
+        //empty the class lists
+        classes.clear();
+        classObjects.clear();
+
         //Populate the classes list and the ClassObjects list
         getClasses();
 
