@@ -59,4 +59,12 @@
     <string name="next_floor">Next Floor</string>
     <string name="previous_floor">Previous Floor</string>
 
+    <string name="find_travel_time">Find Travel Time</string>
+
+    <string name="killam_interior">Killam Interior</string>
+
+    <string name="interior_map">Interior Map</string>
+    <string name="visual_aid">Visual Aid</string>
+    <string name="exterior_map">Exterior Map</string>
+
 </resources>

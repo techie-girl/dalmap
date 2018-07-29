@@ -11,7 +11,7 @@
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/building"
-        android:text="TextView"/>
+        android:text="@string/app_name"/>
 
     <TextView
         android:id="@+id/building"
@@ -19,19 +19,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="TextView" />
+        android:text="@string/app_name" />
 
-    <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
         android:id="@+id/kil_floor_plan_button"
+        android:text="@string/interior_map"
         android:layout_below="@+id/Services"/>
 
-    <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
         android:id="@+id/kil_visual_aid_button"
+        android:text="@string/visual_aid"
         android:layout_toEndOf="@+id/kil_floor_plan_button"
+        android:layout_below="@+id/Services"/>
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/kil_exterior_map_button"
+        android:text="@string/exterior_map"
+        android:layout_toEndOf="@+id/kil_visual_aid_button"
         android:layout_below="@+id/Services"/>
 
 </RelativeLayout>

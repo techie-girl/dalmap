@@ -7,7 +7,7 @@ android:layout_height="match_parent"
         android:id="@+id/killam_floor_plan_mapping_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Find Travel Time"
+        android:text="@string/find_travel_time"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
@@ -31,7 +31,7 @@ android:layout_height="match_parent"
 
     <Button
         android:id="@+id/killam_floor_plan_back_button"
-        android:layout_width="150dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:text="@string/previous_floor"
         android:layout_alignParentStart="true"
@@ -40,8 +40,18 @@ android:layout_height="match_parent"
         android:textColor="@color/brightGrey"/>
 
     <Button
+        android:id="@+id/killam_floor_plan_to_exterior"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:text="@string/exterior_map"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/brightGrey"/>
+
+    <Button
         android:id="@+id/killam_floor_plan_next_button"
-        android:layout_width="150dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:text="@string/next_floor"
         android:layout_alignParentEnd="true"
