@@ -15,18 +15,10 @@ package com.example.scott.dalmapproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.os.Handler;
 import android.widget.ImageButton;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class main_menu extends AppCompatActivity {
 
@@ -84,7 +76,6 @@ public class main_menu extends AppCompatActivity {
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Pass the lists of specified user to ClassListActivity
                 Intent scheduleIntent = new Intent(getApplicationContext(), ScheduleActivity.class);
                 scheduleIntent.putExtra("id", sid);
                 startActivity(scheduleIntent);

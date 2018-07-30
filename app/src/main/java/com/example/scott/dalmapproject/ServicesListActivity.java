@@ -1,3 +1,14 @@
+/**
+ * This creates a class object that will be stored in the class list.
+ * It holds all the information for a specific class.
+ *
+ * @author Jacob
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Scott
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import android.app.SearchManager;

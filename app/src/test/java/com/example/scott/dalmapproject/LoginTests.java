@@ -1,3 +1,17 @@
+/**
+ * Creates a listview used to see a list of buildings.
+ * The values of the building list are hard-coded.
+ * A button is created for logout on this activity.
+ * Activity listens for listview item clicks.
+ * If an item is clicked, it displays building info.
+ *
+ * @author Scott
+ * @author Aqil
+ * @author Arazoo
+ * @author Chris
+ * @author Jacob
+ * @author Jaewoong
+ */
 package com.example.scott.dalmapproject;
 
 import org.junit.BeforeClass;

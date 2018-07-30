@@ -11,7 +11,6 @@
  * @author Jacob
  * @author Jaewoong
  */
-
 package com.example.scott.dalmapproject;
 
 public class CreateVisualAidList {
