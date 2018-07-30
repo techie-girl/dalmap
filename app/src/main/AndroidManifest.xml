@@ -55,30 +55,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HenryHicksInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.ALTERNATIVE" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".GoldbergInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.ALTERNATIVE" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".KillamInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.ALTERNATIVE" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".KillamFloorPlanActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -110,6 +86,14 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".FirebaseBuildingBuilder">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
       
         <activity android:name=".MapActivity"/>
 
@@ -121,6 +105,22 @@
         </intent-filter>
     </activity>
 
+        <activity android:name=".GoldbergVisualAidActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".HenryHicksVisualAidActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ServicesListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -129,13 +129,13 @@
             </intent-filter>
         </activity>
 
-    <activity android:name=".ScheduleActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ScheduleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.ALTERNATIVE" />
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
