@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 public class main_menu extends AppCompatActivity {
 
-    private ArrayList<String> userObjects = new ArrayList<>();
     private String sid;
 
     @Override
@@ -80,45 +79,15 @@ public class main_menu extends AppCompatActivity {
      * My Schedule Button functionality
      */
     private void scheduleButtonFunctionality(){
-        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
-        String location = "users/"+sid+"/classes";
-        firebaseInstanceData.firebaseUserClasses = firebaseInstanceData.firebaseDBInstance.getReference(location);
 
-        //TODO rework with schedule rework
         ImageButton scheduleButton = findViewById(R.id.scheduleButton);
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                //ValueEventListener that retrieves the classes data set from firebase as a DataSnapshot
-                final ValueEventListener myClassesListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        userObjects.clear();
-
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            userObjects.add(ds.getValue(String.class));
-                        }
-                    }
-                    //How to respond when the database lookup has been canceled. Ignored for now
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                };
-                //Add a ValueEventListener that will get all the children in the Classes section
-                //Runs getClassesFromDatabaseListener once when the class is first run, then again when values change in the DB
-                firebaseInstanceData.firebaseUserClasses.addListenerForSingleValueEvent(myClassesListener);
-
-                // Waiting for the firebase reading process to complete
-                new Handler().postDelayed(new Runnable() {
-                    public void run() {
-                        // Pass the lists of specified user to ClassListActivity
-                        Intent scheduleIntent = new Intent(getApplicationContext(), ClassListActivity.class);
-                        scheduleIntent.putExtra("myclasses", userObjects);
-                        startActivity(scheduleIntent);
-                    }
-                }, 500);
+            public void onClick(View v) {
+                // Pass the lists of specified user to ClassListActivity
+                Intent scheduleIntent = new Intent(getApplicationContext(), ScheduleActivity.class);
+                scheduleIntent.putExtra("id", sid);
+                startActivity(scheduleIntent);
             }
         });
     }

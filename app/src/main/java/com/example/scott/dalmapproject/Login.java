@@ -41,9 +41,6 @@ public class Login extends AppCompatActivity {
 
     private String ids, passwords, userID;
 
-    private static final String TAG = "MainActivity";
-    private static final int ERROR_DIALOG_REQUEST = 9001;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,20 +50,28 @@ public class Login extends AppCompatActivity {
         Intent NotificationServiceIntent = new Intent(getApplicationContext(), NotificationService.class);
         startService(NotificationServiceIntent);
 
-        Button bt1 = findViewById(R.id.submitBT);
-        Button bt2 = findViewById(R.id.exitBT);
-        final TextView tvSign = findViewById(R.id.sign);
-        final EditText idEditText = findViewById(R.id.idInput);
-        final EditText pwEditText = findViewById(R.id.pwInput);
-
-
         //Initialize the firebase shared variables
-        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplication();
+        FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplication();
         firebaseInstanceData.firebaseDBInstance = FirebaseDatabase.getInstance();
         firebaseInstanceData.firebaseReferenceClasses = firebaseInstanceData.firebaseDBInstance.getReference("classes");
         firebaseInstanceData.firebaseReferenceUsers = firebaseInstanceData.firebaseDBInstance.getReference("users");
         firebaseInstanceData.firebaseReferenceServices = firebaseInstanceData.firebaseDBInstance.getReference("services");
 
+        loginButtonFunctionality();
+        exitButtonFunctionality();
+        signupOnClickFunctionality();
+    }
+
+    /**
+     * Login button functionality
+     */
+    private void loginButtonFunctionality(){
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplication();
+        final EditText idEditText = findViewById(R.id.idInput);
+        final EditText pwEditText = findViewById(R.id.pwInput);
+
+        Button bt1 = findViewById(R.id.submitBT);
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,23 +118,18 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
 
-        tvSign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), signUp.class);;
-                startActivity(intent2);
-                finish();
-
-            }
-        });
-
+    /**
+     * Exit button functionality
+     */
+    private void exitButtonFunctionality(){
+        Button bt2 = findViewById(R.id.exitBT);
         bt2.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                //final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                 final AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                 builder.setTitle("Exit");
                 builder.setMessage("Do you want to exit ??");
@@ -138,9 +138,6 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int button) {
                         android.os.Process.killProcess(android.os.Process.myPid());
-                        //System.exit(0);
-                        //finishAffinity();
-                        //Login.this.finish();
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -152,36 +149,24 @@ public class Login extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-
             }
         });
-
     }
 
     /**
-     * Checks to see if versions are compatible and if google play services are available.
-     * @return true if they are, false if they are not available.
+     * Sign Up button functionality
      */
-    public boolean isServicesOK(){
-        Log.d(TAG, "isServicesOK: checking google services version");
+    private void signupOnClickFunctionality(){
+        final TextView tvSign = findViewById(R.id.sign);
+        tvSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(Login.this);
-
-        if (available == ConnectionResult.SUCCESS){
-            //User can make map requests
-            Log.d(TAG, "isServicesOK: google play services is working");
-            return true;
-        }
-        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
-            //Error occured but resolvable (version issue most likely)
-            Log.d(TAG, "isServicesOK: Error occured, but resolvable");
-            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(Login.this, available, ERROR_DIALOG_REQUEST);
-            dialog.show();
-        }
-        else{
-            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
-        }
-        return false;
+                Intent intent2 = new Intent(getApplicationContext(), signUp.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
     }
 
     /**

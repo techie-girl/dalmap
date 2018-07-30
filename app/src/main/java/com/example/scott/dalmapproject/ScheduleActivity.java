@@ -1,19 +1,7 @@
-/**
- * Creates a class list that will display all available classes.
- * Accomplished by retrieving data from Firebase database.
- *
- * @author Jacob
- * @author Aqil
- * @author Arazoo
- * @author Chris
- * @author Scott
- * @author Jaewoong
- */
 package com.example.scott.dalmapproject;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -24,7 +12,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,12 +29,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ClassListActivity extends AppCompatActivity {
+public class ScheduleActivity extends AppCompatActivity{
 
     EditText listViewFilter;
     SearchView searchView;
     ArrayList<String> classes = new ArrayList<>();
     ArrayList<ClassObject> classObjects = new ArrayList<>();
+    UserObject userObject = new UserObject();
+    String sid;
 
     /**
      * OnCreate call back for main section of the activity
@@ -58,20 +47,7 @@ public class ClassListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_class_list);
-
-        /**Only uncomment when you want to add more classes to the database
-         * Delete what was already there first
-         * Manually remove the values using the cloud terminal to ensure things are cleaned up properly
-         */
-        //launchClassBuilder();
-
-
-        /**Only uncomment when you want to add more users to the database
-         * Delete what was already there first
-         * Manually remove the values using the cloud terminal to ensure things are cleaned up properly
-         */
-        //launchUserBuilder();
+        setContentView(R.layout.activity_schedule);
     }
 
     /**
@@ -88,27 +64,15 @@ public class ClassListActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Main callback for the ClassListActivity
-     *
-     * The logout button is managed
-     * The classes list is populated
-     * The classes list is displayed in a list view
-     * The list view can be filtered based on the listViewFilters textChangedListener
-     * The list view on item click response in managed
-     */
     @Override
     protected void onStart(){
         super.onStart();
 
-        //Manage logout button
-        logoutButton();
-
-        //empty the class lists
-        classes.clear();
-        classObjects.clear();
+        getUser();
 
         //Populate the classes list and the ClassObjects list
+        classes.clear();
+        classObjects.clear();
         getClasses();
 
         new Handler().postDelayed(new Runnable() {
@@ -116,30 +80,18 @@ public class ClassListActivity extends AppCompatActivity {
             public void run() {
                 buildLayout();
             }
-        }, 500);
-    }
-
-    /**
-     * Used to launch the FirebaseClassBuilder activity which adds classes to firebase
-     */
-    private void launchClassBuilder(){
-        //populate database with classes
-        Intent launchClassBuilder = new Intent(getApplicationContext(), FirebaseClassBuilder.class);
-        startActivity(launchClassBuilder);
-    }
-
-    /**
-     * Used to launch the FirebaseUserBuilder activity which adds users to firebase
-     */
-    private void launchUserBuilder(){
-        //populate database with users
-        Intent launchUserBuilder = new Intent(getApplicationContext(), FirebaseUserBuilder.class);
-        startActivity(launchUserBuilder);
+        }, 700);
     }
 
     private void buildLayout(){
+        TextView scheduleName = findViewById(R.id.scheduleName);
+        TextView scheduleBanner = findViewById(R.id.scheduleBanner);
+
+        scheduleName.setText("Name: " + userObject.name);
+        scheduleBanner.setText("Dalhousie ID: " + userObject.bannerID);
+
         //Gets the ListView from the layout resource file by id
-        final ListView listView = this.findViewById(R.id.Class_List_List_View);
+        final ListView listView = this.findViewById(R.id.scheduleListView);
         listViewFilter = findViewById(R.id.List_View_Filter);
 
         final ArrayAdapter<String> firebaseAdapter = new ArrayAdapter<>(this,
@@ -244,63 +196,53 @@ public class ClassListActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * TODO refactor
-     *
-     * Manages the logout button
-     */
-    private void logoutButton(){
-        Button logoutButton = (Button)findViewById(R.id.class_list_log_out_button);
+    private void getUser(){
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        final Bundle user = getIntent().getExtras();
+        sid = (String)user.get("id");
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
+        ValueEventListener getUserFromDatabaseListener = new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-
-                setContentView(R.layout.logout_layout);
-                Button confirmButton = (Button)findViewById(R.id.confirm_log_out_button);
-
-                confirmButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent relaunch = new Intent(getApplicationContext(), Login.class);
-                        startActivity(relaunch);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    if(ds.getValue(UserObject.class).bannerID.toLowerCase().equals(sid.toLowerCase())){
+                        userObject = ds.getValue(UserObject.class);
                     }
-                });
-                finish();
+                }
             }
-        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        firebaseInstanceData.firebaseReferenceUsers.addListenerForSingleValueEvent(getUserFromDatabaseListener);
+
+
     }
 
-    /**
-     * Gets the class objects from firebase for use in the class list
-     */
     private void getClasses(){
+
         final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
 
-        // display all class lists on firebase
-        //ValueEventListener that retrieves the classes data set from firebase as a DataSnapshot
         ValueEventListener getClassesFromDatabaseListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                //Adds every class in the Class tree to the classes ArrayList
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    classes.add(ds.getValue(ClassObject.class).courseID + " - " +
-                            ds.getValue(ClassObject.class).courseTitle);
+                //Adds every class in the users Class tree to the classes ArrayList
+                for (String s: userObject.classes) {
+                    classes.add(dataSnapshot.child(s).getValue(ClassObject.class).courseID + " - " +
+                            dataSnapshot.child(s).getValue(ClassObject.class).courseTitle);
                     //also adds the ClassObjects to another array list used to access the rest of the class information
-                    classObjects.add(ds.getValue(ClassObject.class));
+                    classObjects.add(dataSnapshot.child(s).getValue(ClassObject.class));
                 }
             }
-
-            //How to respond when the database lookup has been canceled. Ignored for now
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         };
-        //Add a ValueEventListener that will get all the children in the Classes section
-        //Runs getClassesFromDatabaseListener once when the class is first run, then again when values change in the DB
         firebaseInstanceData.firebaseReferenceClasses.addListenerForSingleValueEvent(getClassesFromDatabaseListener);
-
     }
 
     /**
