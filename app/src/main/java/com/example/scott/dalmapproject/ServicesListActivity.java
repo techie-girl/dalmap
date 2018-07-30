@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -86,6 +87,15 @@ public class ServicesListActivity extends AppCompatActivity{
         //Populate the classes list and the ClassObjects list
         getServices();
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                buildLayout();
+            }
+        }, 500);
+    }
+
+    private void buildLayout(){
         //Gets the ListView from the layout resource file by id
         final ListView listView = this.findViewById(R.id.Service_List_List_View);
         listViewFilter = findViewById(R.id.List_View_Filter);

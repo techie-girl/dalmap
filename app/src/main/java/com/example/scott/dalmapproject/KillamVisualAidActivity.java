@@ -21,9 +21,9 @@ import java.util.ArrayList;
 
 public class KillamVisualAidActivity extends AppCompatActivity {
 
-    private final String imageTitleArr[] = { "Exterior Facade", "Main Lobby", "third", "fourth", "fifth", "sixth"};
+    private final String imageTitleArr[] = { "Exterior Facade", "Main Lobby"};
 
-    private final Integer imageIDArr[]={ R.mipmap.kil_basement, R.mipmap.kil_1, R.mipmap.kil_2, R.mipmap.kil_3, R.mipmap.kil_4, R.mipmap.kil_5};
+    private final Integer imageIDArr[]={ R.mipmap.killam_front, R.mipmap.killam_lobby};
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
