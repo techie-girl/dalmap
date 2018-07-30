@@ -24,7 +24,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,6 +47,8 @@ public class ClassListActivity extends AppCompatActivity {
     SearchView searchView;
     ArrayList<String> classes = new ArrayList<>();
     ArrayList<ClassObject> classObjects = new ArrayList<>();
+    UserObject userObject = new UserObject();
+    String sid;
 
     /**
      * OnCreate call back for main section of the activity
@@ -103,6 +104,8 @@ public class ClassListActivity extends AppCompatActivity {
 
         //Manage logout button
         logoutButton();
+
+        getUser();
 
         //empty the class lists
         classes.clear();
@@ -271,6 +274,29 @@ public class ClassListActivity extends AppCompatActivity {
         });
     }
 
+    private void getUser(){
+
+        final Bundle user = getIntent().getExtras();
+        sid = (String)user.get("id");
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
+        ValueEventListener getUserFromDatabaseListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    if(ds.getValue(UserObject.class).bannerID.toLowerCase().equals(sid.toLowerCase())){
+                        userObject = ds.getValue(UserObject.class);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        firebaseInstanceData.firebaseReferenceUsers.addListenerForSingleValueEvent(getUserFromDatabaseListener);
+    }
+
     /**
      * Gets the class objects from firebase for use in the class list
      */
@@ -313,7 +339,7 @@ public class ClassListActivity extends AppCompatActivity {
      * @param view - The current view of the application
      * @param position - The position in the list view that was clicked
      */
-    private void inflatePopup(View view, int position){
+    private void inflatePopup(View view, final int position){
         //LayoutInflater to create a new view from a layout
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -323,6 +349,8 @@ public class ClassListActivity extends AppCompatActivity {
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.MATCH_PARENT;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
 
         //sets the text values in the popup window
         setPopupText(popupWindow, position);
@@ -335,11 +363,37 @@ public class ClassListActivity extends AppCompatActivity {
 
         //close button for the class_info_popup
         final Button button = popupWindow.getContentView().findViewById(R.id.popup_window_button);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+            }
+        });
+
+        Button addClassButton = popupWindow.getContentView().findViewById(R.id.popup_add_class_button);
+        addClassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String newClass = String.valueOf(classObjects.get(position).CRN);
+                boolean duplicate = false;
+
+                if(userObject.classes != null) {
+                    for (String s : userObject.classes) {
+                        if (s.equals(newClass)) {
+                            duplicate = true;
+                        }
+                    }
+
+                    if (!duplicate) {
+                        userObject.classes.add(newClass);
+                        firebaseInstanceData.firebaseReferenceUsers.child(userObject.bannerID).setValue(userObject);
+                    }
+                }else{
+                    userObject.classes = new ArrayList<>();
+                    userObject.classes.add(newClass);
+                    firebaseInstanceData.firebaseReferenceUsers.child(userObject.bannerID).setValue(userObject);
+                }
             }
         });
     }
@@ -407,4 +461,6 @@ public class ClassListActivity extends AppCompatActivity {
             bHrs.setText(String.valueOf(classObject.bHrs));
         }
     }
+
+
 }

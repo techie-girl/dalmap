@@ -80,7 +80,7 @@ public class ScheduleActivity extends AppCompatActivity{
             public void run() {
                 buildLayout();
             }
-        }, 700);
+        }, 500);
     }
 
     private void buildLayout(){
@@ -217,8 +217,6 @@ public class ScheduleActivity extends AppCompatActivity{
             }
         };
         firebaseInstanceData.firebaseReferenceUsers.addListenerForSingleValueEvent(getUserFromDatabaseListener);
-
-
     }
 
     private void getClasses(){
@@ -230,11 +228,13 @@ public class ScheduleActivity extends AppCompatActivity{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 //Adds every class in the users Class tree to the classes ArrayList
-                for (String s: userObject.classes) {
-                    classes.add(dataSnapshot.child(s).getValue(ClassObject.class).courseID + " - " +
-                            dataSnapshot.child(s).getValue(ClassObject.class).courseTitle);
-                    //also adds the ClassObjects to another array list used to access the rest of the class information
-                    classObjects.add(dataSnapshot.child(s).getValue(ClassObject.class));
+                if(userObject.classes != null) {
+                    for (String s : userObject.classes) {
+                        classes.add(dataSnapshot.child(s).getValue(ClassObject.class).courseID + " - " +
+                                dataSnapshot.child(s).getValue(ClassObject.class).courseTitle);
+                        //also adds the ClassObjects to another array list used to access the rest of the class information
+                        classObjects.add(dataSnapshot.child(s).getValue(ClassObject.class));
+                    }
                 }
             }
             @Override
@@ -255,7 +255,7 @@ public class ScheduleActivity extends AppCompatActivity{
      * @param view - The current view of the application
      * @param position - The position in the list view that was clicked
      */
-    private void inflatePopup(View view, int position){
+    private void inflatePopup(View view, final int position){
         //LayoutInflater to create a new view from a layout
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -265,6 +265,8 @@ public class ScheduleActivity extends AppCompatActivity{
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.MATCH_PARENT;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+        final FirebaseInstanceData firebaseInstanceData = (FirebaseInstanceData)getApplicationContext();
 
         //sets the text values in the popup window
         setPopupText(popupWindow, position);
@@ -282,6 +284,21 @@ public class ScheduleActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+            }
+        });
+
+        Button removeClassButton = popupWindow.getContentView().findViewById(R.id.popup_add_class_button);
+        removeClassButton.setText("Remove Class");
+        removeClassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userObject.classes.remove(position);
+                for(String s : userObject.classes){
+                    System.out.println("I"+s);
+                }
+                firebaseInstanceData.firebaseReferenceUsers.child(userObject.bannerID).setValue(userObject);
+                popupWindow.dismiss();
+                finish();
             }
         });
     }
