@@ -77,6 +77,10 @@ public class signUp extends AppCompatActivity {
 
                                 firebaseInstanceData.firebaseReferenceUsers.child(userObject.bannerID).setValue(userObject);
 
+                                Intent intent1 = new Intent(getApplicationContext(), main_menu.class);
+                                intent1.putExtra("id", signIds);
+                                startActivity(intent1);
+                                finish();
                             }
                         }
 

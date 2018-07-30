@@ -160,7 +160,7 @@ public class Login extends AppCompatActivity {
 
                 Intent intent2 = new Intent(getApplicationContext(), signUp.class);
                 startActivity(intent2);
-                finish();
+//                finish();
             }
         });
     }
